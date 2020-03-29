@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SineBU</string>
+    <string name="popular">Popüler</string>
+    <string name="top_rated">En Çok Oylanan</string>
+    <string name="upcoming">Yakında</string>
+    <string name="now_playing">Vizyon</string>
+    <string name="search_title">Ara</string>
+
+    <!-- Strings related to Licences -->
+    <string name="disclaimer">Bu ürün TMDb API kullanır ama resmi TMDb ürünü değildir.</string>
+
+
+    <!-- Strings related to Details -->
+    <string name="summary">Özet</string>
+
+
+    <!-- Strings related to Navigation -->
+    <string name="title_activity_home">SineBU</string>
+    <string name="nav_header_title">SineBU</string>
+    <string name="nav_header_subtitle">selim@sinebu.com</string>
+    <string name="title_activity_settings">Ayarlar</string>
+
+    <string name="movies">Filmler</string>
+    <string name="tv">TV</string>
+    <string name="people">Arkadaşlar</string>
+    <string name="discover">Keşfet</string>
+    <string name="account">Hesap</string>
+    <string name="others">Diğer</string>
+    <string name="login">Giriş</string>
+    <string name="licence">Lisans</string>
+    <string name="settings">Ayarlar</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_header_general">Genel</string>
+    <string name="pref_title_language">Dil</string>
+
+</resources>

@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+    <h2 class="text-center">Choose the City</h2>
+</div>
+<form class="col-sm-8 ml-auto mr-auto city-form" role="search">
+    <div class="form-group">
+        <input type="search" class="form-control" placeholder="Search city names" name="city" id="city">
+    </div>
+</form>
+<div>
+    <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-4 item" ng-repeat="city in cities" ng-click="saveCityandScroll($event)" ng-attr-id="{{city.name}}">
+            <a class="link">
+                <div class="caption">
+                    <div class="caption-content">
+                        <h4 class="text-center">{{city.name}}</h4>
+                    </div>
+                </div>
+                <img class="city-img center-block" ng-src="{{city.image}}">
+            </a>
+        </div>
+    </div>
+</div>

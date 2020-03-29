@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+</head>
+<body>
+<div class="container">
+    {% if logs %}
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>timestamp</th>
+            <th>type</th>
+            <th>description</th>
+
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.id }}</td>
+            <td>{{ log.timestamp }}</td>
+            <td>{{ log.type }}</td>
+            <td>{{ log.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+    <h2>Welcome to logs</h2>
+    {% endif %}
+
+</div>
+</body>
+</html>

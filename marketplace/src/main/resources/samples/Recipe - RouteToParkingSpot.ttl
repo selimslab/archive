@@ -1,0 +1,107 @@
+@prefix bigiot: <http://big-iot.eu/core#> .
+@prefix offeringRecipe: <http://w3c.github.io/bigiot/offeringRecipeModel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pattern: <http://w3c.github.io/bigiot/RecipePatternModel#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix td: <http://w3c.github.io/wot/w3c-wot-td-ontology.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix RouteToParkingSpot: <http://w3c.github.io/bigiot/RouteToParkingSpot#> .
+
+offeringRecipe:Recipe
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+
+pattern:If_Condition
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+
+pattern:For_Loop
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+RouteToParkingSpot:RouteToParkingSpot
+	rdf:type offeringRecipe:Recipe;
+	schema:category schema:parkingSiteManagement;
+	offeringRecipe:description "Offering recipe to retrieve directions to the nearest parking spot."^^xsd:string;
+	offeringRecipe:hasIngredient RouteToParkingSpot:routing;
+	offeringRecipe:hasIngredient RouteToParkingSpot:getGeoCordinates;
+	offeringRecipe:hasIngredient RouteToParkingSpot:getNearestParkSite;
+	offeringRecipe:hasInteraction RouteToParkingSpot:Interaction1;
+	offeringRecipe:hasInteraction RouteToParkingSpot:Interaction2;
+	offeringRecipe:hasInteraction RouteToParkingSpot:Interaction3;
+.
+RouteToParkingSpot:routing
+	rdf:type bigiot:Offering;
+	schema:category schema:directionsCategory;
+	td:hasInput RouteToParkingSpot:routing_input_destination;
+	td:hasInput RouteToParkingSpot:routing_input_source;
+	td:hasOutput RouteToParkingSpot:routing_output_directions;
+.
+RouteToParkingSpot:getGeoCordinates
+	rdf:type bigiot:Offering;
+	schema:category schema:geoCordinatesCategory;
+	td:hasInput RouteToParkingSpot:getGeoCordinates_input_userAddress;
+	td:hasOutput RouteToParkingSpot:getGeoCordinates_output_userCoordinates;
+.
+RouteToParkingSpot:getNearestParkSite
+	rdf:type bigiot:Offering;
+	schema:category schema:nearestLocationCategory;
+	td:hasInput RouteToParkingSpot:getNearestParkSite_input_userCoordinates;
+	td:hasOutput RouteToParkingSpot:getNearestParkSite_output_nearestParkingSpot;
+.
+RouteToParkingSpot:routing_input_destination
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:DestinationCoordinates;
+.
+RouteToParkingSpot:routing_input_source
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:SourceCoordinates;
+.
+RouteToParkingSpot:routing_output_directions
+	rdf:type bigiot:Data;
+	bigiot:rdfType bigiot:Text;
+.
+RouteToParkingSpot:getGeoCordinates_input_userAddress
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:PhysicalAddress;
+.
+RouteToParkingSpot:getGeoCordinates_output_userCoordinates
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:SourceCoordinates;
+.
+RouteToParkingSpot:getNearestParkSite_input_userCoordinates
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:GeoCoordinates;
+.
+RouteToParkingSpot:getNearestParkSite_output_nearestParkingSpot
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:ParkingSiteStatus;
+.
+RouteToParkingSpot:Interaction1
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom RouteToParkingSpot:getGeoCordinates;
+	offeringRecipe:hasIngredientTo RouteToParkingSpot:routing;
+	offeringRecipe:hasIngredientOutput RouteToParkingSpot:getGeoCordinates_output_userCoordinates;
+	offeringRecipe:hasIngredientInput RouteToParkingSpot:routing_input_source;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.
+RouteToParkingSpot:Interaction2
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom RouteToParkingSpot:getGeoCordinates;
+	offeringRecipe:hasIngredientTo RouteToParkingSpot:getNearestParkSite;
+	offeringRecipe:hasIngredientOutput RouteToParkingSpot:getGeoCordinates_output_userCoordinates;
+	offeringRecipe:hasIngredientInput RouteToParkingSpot:getNearestParkSite_input_userCoordinates;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.
+RouteToParkingSpot:Interaction3
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom RouteToParkingSpot:getNearestParkSite;
+	offeringRecipe:hasIngredientTo RouteToParkingSpot:routing;
+	offeringRecipe:hasIngredientOutput RouteToParkingSpot:getNearestParkSite_output_nearestParkingSpot;
+	offeringRecipe:hasIngredientInput RouteToParkingSpot:routing_input_destination;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.

@@ -1,0 +1,65 @@
+
+
+<div class="col-6 form-group">
+    <label for="exampleFormControlSelect1">Category</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+        <option>Location</option>
+        <option>Place</option>
+        <option>Price</option>
+        <option>Number</option>
+    </select>
+</div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="and" id="and" value="and"> AND
+    </label>
+</div>
+<div class="form-check form-check-inline">
+    <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="OR" id="OR" value="OR"> OR
+    </label>
+</div>
+    
+
+<div ng-controller="RecipeController">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">{{currentOffering}}</h3>
+    </div>
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Config</h3>
+        	</div>
+	        <div class="modal-body" id="modal-body">
+	            <ul>
+	                <li ng-repeat="configAttribute in configAttributes">
+	                    <label>{{configAttribute.key}}</label> <br>
+						<input type="text" ng-model="configAttribute.value">
+	                </li>
+	            </ul>
+	        </div>
+			
+	
+            	<h4 class="modal-title" id="modal-title">Offering Selection Rules</h3>
+
+	        <div class="modal-body" id="modal-body">
+	            <ul>
+	                <li ng-repeat="OSR in tempOSRList">
+	                    <label>{{OSR.label}}</label> <br>
+	                    
+	                    <input type="text" ng-if="OSR.OSRCategory == 'OperatorOSR'" ng-model="OSR.operator" placeholder="Operator">
+	                    <!-- <input type="text" ng-if="OSR.OSRCategory == 'ComplexOSR'" ng-model="OSR.property" placeholder="Property"> -->
+	                    
+						<input type="text" ng-if="OSR.OSRCategory != 'ComplexOSR'" ng-model="OSR.value" placeholder="Value">
+						<input type="text" ng-if="OSR.OSRCategory == 'ComplexOSR'" ng-model="OSR.offeringURI" placeholder="Offering">
+	                </li>
+	            </ul>
+	        </div>
+
+</div>
+
+
+
+
+
+
+

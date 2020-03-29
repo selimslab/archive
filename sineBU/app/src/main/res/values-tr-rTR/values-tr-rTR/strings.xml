@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SineBU</string>
+    <string name="popular">Popüler</string>
+    <string name="top_rated">En Çok Oylanan</string>
+    <string name="upcoming">Yakında</string>
+    <string name="now_playing">Vizyon</string>
+    <string name="search_title">Ara</string>
+
+</resources>

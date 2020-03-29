@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_movies"
+            android:icon="@drawable/ic_local_movies_black_24dp"
+            android:title="@string/movies" />
+        <item
+            android:id="@+id/nav_tv"
+            android:icon="@drawable/ic_live_tv_black_24dp"
+            android:title="@string/tv" />
+        <item
+            android:id="@+id/nav_people"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/people"/>
+        <item
+            android:id="@+id/nav_discover"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/discover" />
+    </group>
+
+    <item android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_lock_open_black_24dp"
+                android:title="@string/login" />
+
+        </menu>
+    </item>
+
+
+    <item android:title="@string/others">
+            <group>
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="@string/settings" />
+                <item
+                    android:id="@+id/nav_licence"
+                    android:icon="@drawable/ic_info_black_24dp"
+                    android:title="@string/licence" />
+            </group>
+
+    </item>
+
+</menu>

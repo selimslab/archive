@@ -1,0 +1,271 @@
+# imports: http://big-iot.eu/core#
+# imports: http://www.w3.org/2002/07/owl
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix bigiot-core: <http://big-iot.eu/core#> .
+@prefix mobapplication: <http://w3c.github.io/bigiot/mobapplication#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://w3c.github.io/bigiot/mobapplication>
+  rdf:type owl:Ontology ;
+  owl:imports bigiot-core: ;
+  owl:imports <http://www.w3.org/2002/07/owl> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+.
+
+# Main Application Model
+
+bigiot-core:allOfferings
+  rdf:type bigiot-core:OfferingCategory ;
+  skos:narrower schema:charging ;
+  skos:narrower schema:environmental ;
+  skos:narrower schema:parking ;
+  skos:narrower schema:transportation ;
+  skos:narrower schema:peopleDensityEstimation ;
+  skos:narrower schema:smartBuilding ;
+.
+
+
+
+schema:smartBuilding
+  skos:narrower schema:smartHome ;
+  skos:narrower schema:smartOffice ;
+  skos:narrower schema:switchCat ;
+  skos:narrower schema:lightCat ;
+  skos:narrower schema:switch ;
+  skos:narrower schema:light ;
+.
+schema:smartHome
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:smartOffice
+  rdf:type schema:smartBuilding ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:switchCat
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:lightCat
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:switch
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:light
+  bigiot-core:refersTo bigiot-core:System ;
+.
+
+
+
+schema:peopleDensityEstimation
+  skos:narrower schema:peopleDensityEstimationInArea ;
+  skos:narrower schema:peopleDensityEstimationOnBus ;
+.
+schema:peopleDensityEstimation
+  rdf:type schema:PeopleDensityEstimation ;
+  rdfs:label "people density estimation"^^xsd:string ;
+.
+schema:peopleDensityEstimationInArea
+  bigiot-core:refersTo schema:PeopleDensityInArea ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:peopleDensityEstimationOnBus
+  bigiot-core:refersTo schema:PeopleDensityOnBus ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+
+
+
+
+
+schema:charging
+  skos:narrower schema:chargingPointManagement ;
+  skos:narrower schema:chargingStationManagement ;
+.
+schema:chargingPointManagement
+  bigiot-core:refersTo schema:ChargingPoint ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+schema:chargingStationManagement
+  bigiot-core:refersTo schema:ChargingStation ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+
+
+
+
+
+
+schema:parking
+  skos:narrower schema:parkingSiteManagement ;
+  skos:narrower schema:parkingSpaceManagement ;
+.
+schema:parkingSiteManagement
+  rdf:type schema:Parking ;
+  bigiot-core:refersTo schema:ParkingSite ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  rdfs:comment "A sub-category of Parking to categorize the things relating to parking site management."^^xsd:string ;
+  rdfs:label "parkingSiteMgmtCategory"^^xsd:string ;
+.
+schema:parkingSpaceManagement
+  bigiot-core:refersTo schema:ParkingSpace ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System ;
+.
+
+
+
+
+
+schema:transportation
+  skos:narrower schema:busTransportation ;
+  skos:narrower schema:carTransportation ;
+.
+
+
+
+
+
+
+
+schema:environmental
+  skos:narrower schema:CO ;
+  skos:narrower schema:CO2 ;
+  skos:narrower schema:GHG ;
+  skos:narrower schema:NO2 ;
+  skos:narrower schema:O3 ;
+  skos:narrower schema:PM ;
+  skos:narrower schema:SO2 ;
+  skos:narrower schema:N2O ;
+  skos:narrower schema:CH4 ;
+  skos:narrower schema:airPollution ;
+  skos:narrower schema:airQuality ;
+  skos:narrower schema:airTemperature ;
+  skos:narrower schema:humidity ;
+  skos:narrower schema:noisePollution ;
+.
+schema:CO 
+  bigiot-core:refersTo schema:AirPollutionConcentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:CO2 
+  bigiot-core:refersTo schema:CO2_concentration ;
+  bigiot-core:refersTo schema:GHG_concentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:GHG 
+  bigiot-core:refersTo schema:GHG_concentration ;
+  bigiot-core:refersTo schema:AirPollutionConcentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:O3 
+  bigiot-core:refersTo schema:O3_concentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:PM 
+  bigiot-core:refersTo schema:PM10_concentration ;
+  bigiot-core:refersTo schema:PM_concentration ;
+  bigiot-core:refersTo schema:PM25_concentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:SO2
+  bigiot-core:refersTo schema:AirPollutionConcentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:N2O
+  bigiot-core:refersTo schema:N2O_concentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:NO2
+  bigiot-core:refersTo schema:AirPollutionConcentration ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+  
+schema:CH4
+  bigiot-core:refersTo schema:CH4_concentration;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+  
+schema:humidity 
+  bigiot-core:refersTo schema:AirHumidity ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:airQuality 
+  bigiot-core:refersTo schema:AirQuality ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:airTemperature
+  bigiot-core:refersTo schema:AirTemperature ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:airPollution
+  bigiot-core:refersTo schema:AirPollution ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+schema:noisePollution
+  bigiot-core:refersTo schema:NoisePollution ;
+  bigiot-core:refersTo schema:GeoCoordinates ;
+  bigiot-core:refersTo schema:GeoCircle ;
+  bigiot-core:refersTo bigiot-core:System .
+
+
+
+
+
+
+
+
+# General "non-functional concepts"
+
+schema:sensorID
+    rdfs:label "SensorIdentifier" ;
+    schema:domainIncludes bigiot-core:System  ;
+    schema:rangeIncludes schema:Text ;
+    rdfs:comment "Identifier ID of Sensor" .
+
+schema:accuracy
+    rdfs:label "SystemAccuracy" ;
+    schema:domainIncludes bigiot-core:System  ;
+    schema:rangeIncludes schema:Number ;
+    schema:rangeIncludes schema:Text ;
+    rdfs:comment "Accuracy value for the sensor/system" .
+

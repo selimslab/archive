@@ -1,0 +1,107 @@
+@prefix bigiot: <http://big-iot.eu/core#> .
+@prefix offeringRecipe: <http://w3c.github.io/bigiot/offeringRecipeModel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pattern: <http://w3c.github.io/bigiot/RecipePatternModel#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix td: <http://w3c.github.io/wot/w3c-wot-td-ontology.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ControlLightBySwitchAndMotionDetector: <http://w3c.github.io/bigiot/ControlLightBySwitchAndMotionDetector#> .
+
+offeringRecipe:Recipe
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+pattern:If_Condition
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+pattern:For_Loop
+	rdf:type owl:Class ;
+	rdfs:subClassOf bigiot:Offering ;
+.
+ControlLightBySwitchAndMotionDetector:ControlLightBySwitchAndMotionDetector
+	rdf:type offeringRecipe:Recipe;
+	schema:category schema:smartOffice;
+	offeringRecipe:description "Switch a light on and off when a switch is pressed"^^xsd:string;
+	offeringRecipe:hasIngredient ControlLightBySwitchAndMotionDetector:MotionDetector;
+	offeringRecipe:hasIngredient ControlLightBySwitchAndMotionDetector:Switch;
+	offeringRecipe:hasIngredient ControlLightBySwitchAndMotionDetector:Light;
+	offeringRecipe:hasIngredient ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent;
+	offeringRecipe:hasInteraction ControlLightBySwitchAndMotionDetector:Interaction1;
+	offeringRecipe:hasInteraction ControlLightBySwitchAndMotionDetector:Interaction2;
+	offeringRecipe:hasInteraction ControlLightBySwitchAndMotionDetector:Interaction3;
+.
+ControlLightBySwitchAndMotionDetector:MotionDetector
+	rdf:type bigiot:Offering;
+	schema:category schema:smartBuilding;
+	td:hasOutput ControlLightBySwitchAndMotionDetector:MotionDetector_output_motionDetected;
+.
+ControlLightBySwitchAndMotionDetector:Switch
+	rdf:type bigiot:Offering;
+	schema:category schema:smartBuilding;
+	td:hasOutput ControlLightBySwitchAndMotionDetector:Switch_output_switchPressed;
+.
+ControlLightBySwitchAndMotionDetector:Light
+	rdf:type bigiot:Offering;
+	schema:category schema:smartBuilding;
+	td:hasInput ControlLightBySwitchAndMotionDetector:Light_input_switch;
+.
+ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent
+	rdf:type pattern:If_Condition;
+	td:hasInput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_motionDetected;
+	td:hasInput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_switchPressed;
+	td:hasOutput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_output_noonePresentAndSwitchOff;
+	pattern:hasVariable "SwitchOffINooneIsPresent_input_motionDetected"^^xsd:string;
+	pattern:hasValue "1"^^xsd:string;
+	pattern:hasRelationalOperator pattern:equalTo;
+.
+ControlLightBySwitchAndMotionDetector:MotionDetector_output_motionDetected
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Number;
+.
+ControlLightBySwitchAndMotionDetector:Switch_output_switchPressed
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Text;
+.
+ControlLightBySwitchAndMotionDetector:Light_input_switch
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Number;
+.
+ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_motionDetected
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Number;
+.
+ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_switchPressed
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Text;
+.
+ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_output_noonePresentAndSwitchOff
+	rdf:type bigiot:Data;
+	bigiot:rdfType schema:Number;
+.
+ControlLightBySwitchAndMotionDetector:Interaction1
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom ControlLightBySwitchAndMotionDetector:MotionDetector;
+	offeringRecipe:hasIngredientTo ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent;
+	offeringRecipe:hasIngredientOutput ControlLightBySwitchAndMotionDetector:MotionDetector_output_motionDetected;
+	offeringRecipe:hasIngredientInput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_motionDetected;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.
+ControlLightBySwitchAndMotionDetector:Interaction2
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom ControlLightBySwitchAndMotionDetector:Switch;
+	offeringRecipe:hasIngredientTo ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent;
+	offeringRecipe:hasIngredientOutput ControlLightBySwitchAndMotionDetector:Switch_output_switchPressed;
+	offeringRecipe:hasIngredientInput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_input_switchPressed;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.
+ControlLightBySwitchAndMotionDetector:Interaction3
+	rdf:type offeringRecipe:Interaction;
+	offeringRecipe:hasIngredientFrom ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent;
+	offeringRecipe:hasIngredientTo ControlLightBySwitchAndMotionDetector:Light;
+	offeringRecipe:hasIngredientOutput ControlLightBySwitchAndMotionDetector:SwitchOffINooneIsPresent_output_noonePresentAndSwitchOff;
+	offeringRecipe:hasIngredientInput ControlLightBySwitchAndMotionDetector:Light_input_switch;
+	offeringRecipe:hasOperation offeringRecipe:Update;
+.

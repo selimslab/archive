@@ -1,0 +1,112 @@
+
+body{
+  margin-bottom:16rem;
+}
+
+button{
+  margin-top:0.5rem;
+  margin-bottom:0.5rem;
+}
+
+.container{
+  margin-top:10rem;
+}
+
+.section-heading{
+  margin-top:10rem;
+}
+
+.row {
+    margin-bottom: 1rem;
+}
+
+section {
+    margin-top: 5rem;
+    margin-bottom:15rem !important;
+    min-height: 20rem;
+    padding:2rem;
+}
+
+section:nth-child(odd) {
+    background: #ffc107;
+
+}
+
+textarea {
+    width: 90%;
+    margin-top: 1rem;
+    overflow:scroll !important;
+}
+
+
+.city-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    display: block;
+    margin: auto;
+}
+
+.service-img{
+    margin:auto;
+    display:block;
+}
+
+
+.offerings {
+    min-height: 10rem;
+    border: 3px solid #ddd;
+}
+
+.settings {
+    min-height: 10rem;
+    border: 3px solid #ddd;
+}
+
+
+
+ .item {
+  right: 0;
+  margin: 0 0 15px; }
+   .item .link {
+    position: relative;
+    display: block;
+    max-width: 200px;
+    margin: 0 auto;
+    cursor: pointer; }
+     .item .link .caption {
+      position: absolute;
+      width: 100%;
+      height: 100%;    
+      -webkit-transition: all ease 0.5s;
+      -moz-transition: all ease 0.5s;
+      transition: all ease 0.5s;
+      opacity: 0;
+      background: rgba(24, 188, 156, 0.9); }
+       .item .link .caption:hover {
+        opacity: 1; }
+       .item .link .caption .caption-content {
+        font-size: 20px;
+        position: absolute;
+        top: 30%;
+        width: 100%;
+        height: 20px;
+        margin-top: -12px;
+        text-align: center;
+        color: white; }
+         .item .link .caption .caption-content i {
+          margin-top: -12px; }
+         .item .link .caption .caption-content h3,
+         .item .link .caption .caption-content h4 {
+          margin: 0; }
+
+
+
+@media (min-width: 767px) {
+   .item {
+    margin: 0 0 30px; } }
+
+
+.card{
+  margin-bottom:0.5rem;
+}

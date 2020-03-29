@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    
+	
+	<group prefer="public" xml:base="">
+        <uri name="https://www.w3.org/2002/07/owl#" 						uri="vocabularies/owl.rdf"/>
+        <uri name="http://www.w3.org/2004/02/skos/core" 					uri="vocabularies/skos.rdf"/>
+		<uri name="http://www.w3.org/2000/01/rdf-schema" 					uri="vocabularies/rdf-schema.rdf"/>
+		<uri name="http://schema.org/" 										uri="vocabularies/schema.ttl"/>
+		<uri name="http://www.w3.org/2008/05/skos-xl" 						uri="vocabularies/skos-xl.rdf"/>
+		<uri name="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl" 	uri="vocabularies/DUL.owl"/>
+		
+		<uri name="http://www.w3c.org/wot/td" uri="http://w3c.github.io/wot/w3c-wot-td-ontology.owl#"/>
+		
+		<uri name="http://big-iot.eu/core#" uri="vocabularies/bigiot-core-model.ttl"/>
+		<uri name="http://w3c.github.io/bigiot/RecipePatternModel"  uri="vocabularies/RecipePatternModel.ttl"/>
+		<uri name="http://w3c.github.io/bigiot/offeringRecipeModel" uri="vocabularies/OfferingRecipeModel.ttl"/>
+		
+		<uri name="http://w3c.github.io/bigiot/" uri="vocabularies/"/>
+    </group>
+	<!--
+    <rewriteURI
+        uriStartString="http://w3c.github.io/bigiot/"
+        rewritePrefix="file:///D:/Dev_Siemens/bigiot-serious-trials/marketplace-recipe-cooker/src/main/resources/vocabularies/" />
+	
+	
+	<rewriteURI
+        uriStartString="http://w3c.github.io/wot/"
+        rewritePrefix="file:///D:/Dev_Siemens/bigiot-serious-trials/marketplace-recipe-cooker/src/main/resources/vocabularies/" />-->
+</catalog>

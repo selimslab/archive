@@ -1,0 +1,446 @@
+
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qu: <http://purl.org/NET/ssnx/qu/qu#> .
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+schema:AirHumidity
+  rdf:type rdfs:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#AirHumidity> ;
+  rdfs:comment "Air Humidity." ;
+  rdfs:label "Air Humidity" ;
+  rdfs:subClassOf schema:AirQuality ;
+.
+schema:AirPollution
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Air_pollution> ;
+  rdfs:comment "The different types of air pollution that are represented in the ISO37120 Environment Indicators." ;
+  rdfs:label "Air Pollution" ;
+  rdfs:subClassOf schema:AirQuality ;
+  rdfs:subClassOf schema:Pollution ;
+.
+schema:AirPollutionConcentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Air_pollution_concentration> ;
+  rdfs:comment "Measurements of air pollution at a specific time and location." ;
+  rdfs:label "Air Pollution Concentration" ;
+  rdfs:subClassOf schema:PollutionConcentration ;
+.
+schema:AirQuality
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#AirQuality> ;
+  rdfs:comment "The different types of air pollution that are represented in the ISO37120 Environment Indicators." ;
+  rdfs:label "Air Quality" ;
+.
+schema:AirTemperature
+  rdf:type rdfs:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#AirTemperature> ;
+  rdfs:comment "Air Temperature." ;
+  rdfs:label "Air Temperature" ;
+  rdfs:subClassOf schema:AirQuality ;
+  rdfs:subClassOf schema:Temperature ;
+.
+schema:CH4_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#CH4> ;
+  rdfs:comment "Methane gas concentration"^^xsd:string ;
+  rdfs:label "Methane gas concentration"^^xsd:string ;
+  rdfs:subClassOf schema:GHG_concentration ;
+.
+schema:CO
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for carbon monoxide"^^xsd:string ;
+  rdfs:label "Carbon Monoxide"^^xsd:string ;
+.
+schema:CO2
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for carbon dioxide."^^xsd:string ;
+  rdfs:label "Carbon Dioxide"^^xsd:string ;
+.
+schema:CO2_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#CO2> ;
+  rdfs:comment "Carbon dioxide concentration"^^xsd:string ;
+  rdfs:label "CO2 concentration"^^xsd:string ;
+  rdfs:subClassOf schema:GHG_concentration ;
+.
+schema:CO_concentration
+  rdf:type rdfs:Class ;
+  rdfs:comment "Carbon monoxide concentration"^^xsd:string ;
+  rdfs:label "Carbon Monoxide concentration"^^xsd:string ;
+  rdfs:subClassOf schema:AirPollution ;
+.
+schema:Degree
+  rdf:type owl:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#Degree> ;
+  rdfs:comment "Degree."@en ;
+  rdfs:label "Degree"@en ;
+  rdfs:subClassOf qu:Unit ;
+.
+schema:DegreeCelsius
+  rdf:type owl:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#DegreeCelsius> ;
+  rdfs:comment "A temperature unit which is equal to one kelvin degree. However, they have their zeros at different points. The centigrade scale has its zero at 273.15 K."@en ;
+  rdfs:label "Degree Celsius"@en ;
+  rdfs:seeAlso qudt:DegreeCelsius ;
+  rdfs:seeAlso <http://purl.oclc.org/NET/ssnx/qu/unit#degreeCelsius> ;
+  rdfs:seeAlso <http://sweet.jpl.nasa.gov/ontology/units.owl#degreeC> ;
+  rdfs:subClassOf schema:Degree ;
+.
+schema:DegreeFahrenheit
+  rdf:type owl:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#DegreeFahrenheit> ;
+  rdfs:comment "Measurement Unit to represent temperature on the Fahrenheit scale."@en ;
+  rdfs:label "Degree Fahrenheit"@en ;
+  rdfs:seeAlso <http://archive.knoesis.org/research/semsci/application_domain/sem_sensor/ont/weather.owlfahrenheit> ;
+  rdfs:seeAlso <http://sweet.jpl.nasa.gov/ontology/units.owl#degreeF> ;
+  rdfs:subClassOf schema:Degree ;
+.
+schema:Environment
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Environment> ;
+  rdfs:label "Environment" ;
+.
+
+#schema:Environment a rdfs:Class ;
+ #   rdfs:label "An Environment category" ;
+ #   schema:isPartOf <http://mobility.schema.org> ;
+ #   rdfs:comment "An Environment category class." ;
+ #   rdfs:subClassOf schema:Enumeration .
+
+
+schema:environmental a schema:Environmental ;
+    rdfs:label "environment category instance" ;
+    rdfs:comment "A environment category." .
+
+schema:Environmental
+  rdf:type rdfs:Class ;
+  rdfs:comment "An Environment category class." ;
+  rdfs:label "Environment" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:GHG
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for Green House Gases."^^xsd:string ;
+  rdfs:label "Green House Gases"^^xsd:string ;
+.
+schema:GHG_concentration
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#GHGs> ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#GHGs_concentration> ;
+  rdfs:comment "Greenhouse gases concentration"^^xsd:string ;
+  rdfs:label "Green House Gases concentration"^^xsd:string ;
+  rdfs:subClassOf schema:AirPollution ;
+.
+
+schema:N2O
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for N2O."^^xsd:string ;
+  rdfs:label "N2O"^^xsd:string ;
+  .
+
+
+schema:N2O_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#N2O> ;
+  rdfs:comment "Nitrous oxide concentration"^^xsd:string ;
+  rdfs:label "Nitrogen Oxide concentration"^^xsd:string ;
+  rdfs:subClassOf schema:GHG_concentration ;
+.
+schema:NO2
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for nitrogen dioxide"^^xsd:string ;
+  rdfs:label "Nitrogen Dioxide"^^xsd:string ;
+.
+schema:NO2_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#NO2> ;
+  rdfs:comment "Nitrogen dioxide concentration"^^xsd:string ;
+  rdfs:label "Nitrogen Dioxide concentration"^^xsd:string ;
+  rdfs:subClassOf schema:AirPollution ;
+.
+schema:NoisePollution
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Noise_pollution> ;
+  rdfs:comment "Noise pollution" ;
+  rdfs:label "Noise Pollution" ;
+  rdfs:subClassOf schema:Pollution ;
+.
+schema:O3
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for ozone."^^xsd:string ;
+  rdfs:label "Ozone"^^xsd:string ;
+.
+schema:O3_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#O3> ;
+  rdfs:comment "Ozone concentration"^^xsd:string ;
+  rdfs:label "Ozone concentration"^^xsd:string ;
+  rdfs:subClassOf schema:GHG_concentration ;
+.
+schema:PM
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for particle pollution."^^xsd:string ;
+  rdfs:label "Particle Pollution"^^xsd:string ;
+.
+schema:PM10_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#PM10> ;
+  rdfs:comment "Particulate matter with particles that are 10 microns or less in diameter" ;
+  rdfs:label "Particulate Matter 10 concentration"^^xsd:string ;
+  rdfs:subClassOf schema:PM_concentration ;
+.
+schema:PM25_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#PM2.5> ;
+  rdfs:comment "Particulate matter with particles that are 25 microns or less in diameter" ;
+  rdfs:label "Particulate Matter 25 concentration"^^xsd:string ;
+  rdfs:subClassOf schema:PM_concentration ;
+.
+schema:PM_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#PM> ;
+  rdfs:comment "Particulate matter" ;
+  rdfs:label "Particulate Matter concentration"^^xsd:string ;
+  rdfs:subClassOf schema:AirPollution ;
+.
+schema:Pollution
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Pollution> ;
+  rdfs:comment "The different types of pollutions that are represented in the ISO37120 Environment indicators" ;
+  rdfs:label "Pollution" ;
+  rdfs:subClassOf schema:Environment ;
+.
+schema:PollutionAverage
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Pollution_average> ;
+  rdfs:comment "Average value of pollution measurements over a certain time interval." ;
+  rdfs:label "Pollution Average" ;
+  rdfs:subClassOf schema:PollutionData ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass <http://www.w3.org/2006/time#Interval> ;
+      owl:onProperty schema:has_periodicity ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+schema:PollutionConcentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Pollution_concentration> ;
+  rdfs:comment "The different types of pollution concentrations that are represented in the ISO37120 Environment indicators - these record the actual measurements at a specific time and location." ;
+  rdfs:label "Pollution Concentration" ;
+  rdfs:subClassOf schema:PollutionData ;
+.
+schema:PollutionData
+  rdf:type rdfs:Class ;
+  rdfs:comment "Measured or derived values relating to pollution measurements." ;
+  rdfs:label "Pollution Data" ;
+  rdfs:subClassOf schema:BasicData ;
+.
+
+
+
+schema:SO2
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for SO2."^^xsd:string ;
+  rdfs:label "SO2"^^xsd:string ;
+  .
+
+schema:SO2_concentration
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#SO2> ;
+  rdfs:comment "Sulphur dioxide" ;
+  rdfs:label "Sulphur Dioxide concentration"^^xsd:string ;
+  rdfs:subClassOf schema:AirPollution ;
+.
+schema:Temperature
+  rdf:type owl:Class ;
+  dcterms:source <http://purl.org/iot/vocab/m3-lite#Temperature> ;
+  rdfs:comment "It is the air temperature."@en ;
+  rdfs:label "Temperature"@en ;
+  rdfs:seeAlso <http://archive.knoesis.org/research/semsci/application_domain/sem_sensor/ont/sensor-observation.owlTemperatureProperty> ;
+  rdfs:seeAlso <http://openiot.eu/ontology/ns/Temperature> ;
+  rdfs:seeAlso <http://purl.oclc.org/NET/ssnx/meteo/aws#air_temperature> ;
+  rdfs:subClassOf qu:QuantityKind ;
+.
+schema:WaterPollution
+  rdf:type rdfs:Class ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#Water_pollution> ;
+  rdfs:label "Water Pollution" ;
+  rdfs:subClassOf schema:Pollution ;
+.
+schema:airHumidityValue
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirHumidity ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "Air Humidity Value" ;
+.
+schema:airPollution
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for air pollution."^^xsd:string ;
+  rdfs:label "Air Pollution"^^xsd:string ;
+.
+schema:airQuality
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for air Quality."^^xsd:string ;
+  rdfs:label "Air Quality"^^xsd:string ;
+.
+schema:airQualitySystemId
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirQuality ;
+  schema:rangeIncludes schema:Integer ;
+  rdfs:label "airQualitySystem_id" ;
+.
+schema:airTemperature
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for air temperature"^^xsd:string ;
+  rdfs:label "Air Temperature"^^xsd:string ;
+.
+schema:airTemperatureValue
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirTemperature ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "Air Temperature Value" ;
+.
+schema:distanceFromNoiseSource
+  rdf:type owl:ObjectProperty ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "distance From Noise Source" ;
+.
+schema:hasAirPollutionConcentration
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirPollution ;
+  schema:rangeIncludes schema:AirPollutionConcentration ;
+  rdfs:label "Air pollution concentration value"^^xsd:string ;
+.
+schema:hasCH4_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#CH4_concentration> ;
+  schema:domainIncludes schema:CH4_concentration ;
+  schema:domainIncludes schema:GHG_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "CH4 Concentration" ;
+.
+schema:hasCO2_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#CO2_concentration> ;
+  schema:domainIncludes schema:CO2_concentration ;
+  schema:domainIncludes schema:GHG_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "CO2 Concentration value"^^xsd:string ;
+.
+schema:hasCO_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#CO_concentration> ;
+  schema:domainIncludes schema:AirPollutionConcentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "CO Concentration value"^^xsd:string ;
+.
+schema:hasGHG_concentration
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirPollutionConcentration ;
+  schema:rangeIncludes schema:GHG_concentration ;
+  rdfs:label "GHG Concentration value"^^xsd:string ;
+.
+schema:hasN2O_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#N2O_concentration> ;
+  schema:domainIncludes schema:GHG_concentration ;
+  schema:domainIncludes schema:N2O_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "NO2 Concentration value"^^xsd:string ;
+.
+schema:hasNO2_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#NO2_concentration> ;
+  schema:domainIncludes schema:AirPollutionConcentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "CO2 Concentration value"^^xsd:string ;
+.
+schema:hasNoiseLevel
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:NoisePollution ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "Noise Level" ;
+.
+schema:hasO3_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#O3_concentration> ;
+  schema:domainIncludes schema:GHG_concentration ;
+  schema:domainIncludes schema:O3_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "O3 Concentration value"^^xsd:string ;
+.
+schema:hasPM10_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#PM10_concentration> ;
+  schema:domainIncludes schema:PM10_concentration ;
+  schema:domainIncludes schema:PM_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "PM10 Concentration" ;
+.
+schema:hasPM25_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#PM2.5_concentration> ;
+  schema:domainIncludes schema:PM25_concentration ;
+  schema:domainIncludes schema:PM_concentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "PM25 Concentration" ;
+.
+schema:hasPM_concentration
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:AirPollution ;
+  schema:rangeIncludes schema:PM_concentration ;
+  rdfs:label "PM Concentration value"^^xsd:string ;
+.
+schema:hasSO2_concentration
+  rdf:type owl:ObjectProperty ;
+  dcterms:source <http://ontology.eil.utoronto.ca/GCI/Environment/Pollution.owl#SO2_concentration> ;
+  schema:domainIncludes schema:AirPollutionConcentration ;
+  schema:rangeIncludes schema:Float ;
+  rdfs:label "SO2 Concentration value" ;
+.
+schema:humidity
+  rdf:type schema:Environmental ;
+  rdfs:comment "A category for humidity"^^xsd:string ;
+  rdfs:label "Humidity"^^xsd:string ;
+.
+schema:noisePollution
+  rdf:type schema:Environmental ;
+  rdfs:comment "A noise pollution category."^^xsd:string ;
+  rdfs:label "Noise Pollution"^^xsd:string ;
+.
+<http://www.w3.org/2006/time#Instant>
+  rdf:type rdfs:Class ;
+  rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ;
+  owl:disjointWith <http://www.w3.org/2006/time#ProperInterval> ;
+.
+<http://www.w3.org/2006/time#Interval>
+  rdf:type rdfs:Class ;
+  rdfs:subClassOf <http://www.w3.org/2006/time#TemporalEntity> ;
+.
+<http://www.w3.org/2006/time#ProperInterval>
+  rdf:type rdfs:Class ;
+  rdfs:subClassOf <http://www.w3.org/2006/time#Interval> ;
+.
+<http://www.w3.org/2006/time#TemporalEntity>
+  rdf:type rdfs:Class ;
+  owl:equivalentClass [
+      rdf:type rdfs:Class ;
+      owl:unionOf (
+          <http://www.w3.org/2006/time#Instant>
+          <http://www.w3.org/2006/time#Interval>
+        ) ;
+    ] ;
+.
+<http://www.w3.org/2006/time#inDateTime>
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain <http://www.w3.org/2006/time#Instant> ;
+.

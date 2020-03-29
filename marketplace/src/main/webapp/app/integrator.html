@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-7188243-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments)};
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-7188243-5');
+	</script>
+	
+    <meta charset="utf-8">
+	<title>IoT Integrator</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="IoT Descriptor">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IoT Descriptor</title>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- custom style -->
+    <link rel="stylesheet" href="app/styles/integrator/integrator.css">
+    <link href="app/styles/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="index.html"><img src="app/images/logo.png" width="40" height="40" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="cook-recipe.html">Cook Recipe!</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="integrator.html">Add Offering</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="editor.html">Add Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="show-offerings.html">Show Offerings</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-xl-0">
+                <input class="form-control  mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </nav>
+    <!-- Page wrapper -->
+    <div class="container">
+    <div class="row">
+
+        <div class='controls col-sm-12 col-md-2 '>
+            <ul class="nav flex-sm-column">
+                <li class="nav-item">
+                    <input type="file" name='fileInput' id='fileInput' accept=".json, .txt" class="hideFile">
+                    <label class="btn btn-light" id='fileLabel' for='fileInput' data-toggle="tooltip" data-placement="top" title="Import File">Upload</label>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" id='dwn' download="offering.json" onclick='down()' data-toggle="tooltip" data-placement="top" title="Download JSON">Download</a>
+                </li>
+
+                <li class="nav-item">
+                    <button type='button' onclick='showTemplates()' class='btn btn-light' data-toggle="tooltip" data-placement="top" title="Paste Template">Template</button>
+                </li>
+                <li class="nav-item">
+                    <button type='button' onclick='addCard(1)' class='btn btn-light' data-toggle="tooltip" data-placement="top" title="Add Input Parameter">Add Input</button>
+                </li>
+                <li class="nav-item">
+                    <button type='button' onclick='addCard(2)' class='btn btn-light' data-toggle="tooltip" data-placement="top" title="Add Output Parameter">Add Output</button>
+                </li>
+            </ul>
+        </div>
+
+        <form class='col-sm-8 col-md-5 col-xl-5' oninput="updateEditor()">
+        <h2 class="text-center">Create Offering</h2>
+            <h5 id=' status'></h5>
+            <div class="form-group row">
+                <div class='col-sm-12'>
+                    <h5>Name of the Offering</h5>
+                    <input type="text" name="endpoint" class="form-control " id="nameofoffering">
+                </div>
+                <div class="col-sm-12">
+                    <h5>Category</h5>
+                    <select class="form-control form-control-sm" id="category">
+                        <!-- added from array-->
+                    </select>
+                </div>
+                <div class='col-sm-12'>
+                    <h5>Provider</h5>
+                    <input type="text" name="provider" class="form-control " id="provider">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <h5>Endpoint Type</h5>
+                    <select class="form-control" id="endpointType">
+                        <option value='HTTP_POST'>HTTP_POST</option>
+                        <option value='HTTP_GET'>HTTP_GET</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Endpoint URL</h5>
+                    <input type="url" name="endpoint" class="form-control " id="endpointurl" data-toggle="tooltip" data-placement="top" title="Please specify the URL of your service endpoint where data can be retrieved.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <h5>Response Data Format</h5>
+                    <select class="form-control" id="contentType">
+                        <option value='application/xml'>application/xml</option>
+                        <option value='application/json'>application/json</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <h5 for="acceptType">Request Data Format</h5>
+                    <select class="form-control " id="acceptType">
+                        <option value='application/xml'>application/xml</option>
+                        <option value='application/json'>application/json</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <h5>Area</h5>
+                    <input type="search" onchange='updateEditor()' name="endpoint" class="form-control " id="cityName" data-toggle="tooltip" data-placement="top" title="Where is your Offering?">
+                </div>
+                <div class="col-sm-12">
+                    <h5>Data Licence</h5>
+                    <select class="form-control " id="lisans">
+                        <option value='OPEN_DATA_LICENSE'>OPEN_DATA_LICENSE</option>
+                        <option value='CREATIVE_COMMONS'>CREATIVE_COMMONS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class='col-sm-12'>
+                    <h5>Pricing</h5>
+                    <select class="form-control " id="accountingType">
+                        <option value='PER_ACCESS'>PER_ACCESS</option>
+                        <option value='FLATRATE'>FLATRATE</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Currency</h5>
+                    <select class="form-control " id="currency">
+                        <option value='eur'>EUR</option>
+                        <option value='usd'>USD</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <h5>Amount</h5>
+                    <input type="number" name="amount" class="form-control " id="amount">
+                </div>
+            </div>
+            <section id='templates'>
+                <div class="form-group row">
+                    <div class="col">
+                        <h5>Request Template</h5>
+                        <textarea class="form-control " onchange="setFromTemplate()" rows="3" 
+                        id="templateRequest" ></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <h5>Response Template</h5>
+                        <textarea class="form-control " onchange="setFromTemplate()" rows="3" 
+                        id="templateResponse" ></textarea>
+                    </div>
+                </div>
+            </section>
+            <div class="row" id='cards'></div>
+        </form>
+
+        <div id="editor" class='col-sm-12 col-md-5'></div>
+
+    </div>
+    </div>
+
+    <!-- city -->
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.4.15"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.7/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/mode-json.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/theme-twilight.js"></script>
+    <!-- main functions -->
+    <script src="app/scripts/integrator/controls.js"></script>
+    <script src="app/scripts/integrator/form.js"></script>  
+    <script src="app/scripts/integrator/editor.js"></script>
+    <script src="app/scripts/integrator/template.js"></script>
+    <script src="app/scripts/integrator/cards.js"></script>
+</body>
+
+</html>

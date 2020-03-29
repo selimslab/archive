@@ -1,0 +1,19 @@
+# You may add dependencies, but please don't remove any!
+name: challenge-env
+dependencies:
+  - flake8
+  - flask
+  - joblib
+  - mypy
+  - nomkl
+  - pandas
+  - python=3.7
+  - pydocstyle
+  - pip
+  - scikit-learn
+  - pip:
+    - kaggle
+    - pydeps
+    - pygount
+    - tensorflow
+    - tensorflow_hub

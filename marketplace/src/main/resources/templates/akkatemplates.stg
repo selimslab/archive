@@ -1,0 +1,121 @@
+delimiters "$", "$"
+
+program(graph) ::= <<
+package $graph.packageName$;
+
+import eu.bigiot.marketplace.appgen.runtime.*;
+
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import akka.actor.UntypedActor;
+import akka.http.javadsl.marshalling.Marshaller;
+import akka.http.javadsl.server.Route;
+import akka.http.javadsl.unmarshalling.Unmarshaller;
+import akka.pattern.PatternsCS;
+import akka.util.Timeout;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static akka.http.javadsl.server.Directives.*;
+
+public class $graph.recipeName$Descriptor implements RecipeDescriptor {
+
+  @Override
+  public Props props() {
+      return Props.create($graph.recipeName$.class, $graph.recipeName$::new);
+  }
+
+  @Override
+  public String getName() {
+      return "$graph.recipeName$";
+  }
+
+
+  class $graph.recipeName$ extends UntypedActor {
+
+      private final ActorRef endpoint;
+      private final ActorRef output;
+
+      private final String semantics = "{\"input\": $graph.inputNode.extra.semantics$," +
+                                       "\"output\": $graph.outputNode.extra.semantics$" +
+                                       "}";
+
+      $graph.recipeName$() {
+          output = context().actorOf(Output.props($length(graph.outputNode.inputNodes)$));
+          List<ActorRef> outputs;
+          Map<String, String> renames;
+          IoTActorConfig cfg;
+
+          // Now, create "proper" actors, in reverse topological order.
+          $reverse(graph.sortedNodes):createActor()$
+
+          // Finally, create input JSON decoder.
+          Map<String, ActorMapEntry> actorMap = new HashMap<>();
+          $graph.inputNode.outputNodes:createActorMapEntry()$
+          ActorRef decoder = context().actorOf(JSONDecoder.props(actorMap));
+          endpoint = context().actorOf(EndpointActor.props(decoder));
+          output.tell(endpoint, ActorRef.noSender());
+      }
+
+      @Override
+      public void onReceive(Object o) throws Throwable {
+          if (o instanceof String) {
+              String req = (String) o;
+              if (req.equals("routes")) {
+                  sender().tell(getRoute(), self());
+              }
+          }
+      }
+
+      private Route getRoute() {
+          return
+           route(
+              path("$graph.recipeName$", () ->
+                  post(() ->
+                      entity(Unmarshaller.entityToString(), payload ->
+                          completeOKWithFuture(PatternsCS.ask(endpoint, payload, new Timeout(30, TimeUnit.SECONDS))
+                              .thenApply(Object::toString),
+                            Marshaller.stringToEntity())))),
+              path("$graph.recipeName$.metadata", () ->
+                  get(() ->
+                      complete(semantics))));
+      }
+  }
+}
+>>
+
+createActor(node) ::= <<
+outputs = new ArrayList<>();
+$node.outputLabels:{label | outputs.add($label$);$\n$}$
+renames = new HashMap<>();
+$node.inputs:{edge | renames.put("$edge.outputLabel$", "$edge.inputLabel$");$\n$}$
+cfg = new IoTActorConfig($length(node.inputs)$, outputs).setRenames(renames);
+$node:(node.templateName)()$$\n$
+>>
+
+coapActor(node) ::= <<
+ActorRef $node.label$ = context().actorOf(CoapActor.props("$node.method$", "$node.URL$", cfg), "$node.label$");
+>>
+
+httpActor(node) ::= <<
+ActorRef $node.label$ = context().actorOf(HttpActor.props("$node.method$", "$node.URL$", cfg), "$node.label$");
+>>
+
+conditionActor(node) ::= <<
+ActorRef $node.label$ = context().actorOf(IfActor.props(cfg, $node.left$, $node.operator$, $node.right$), "$node.label$");
+>>
+
+loopActor(node) ::= <<
+ActorRef $node.label$ = context().actorOf(ForActor.props(
+        cfg, "$node.variable$", "$node.initValue$", "$node.boolVariable$",
+        "$node.operator$", "$node.boolValue$", "$node.incrementOper$", "$node.incrementValue$"),
+    "$node.label$");
+>>
+
+createActorMapEntry(node) ::= <<
+actorMap.put("$node.label$", new ActorMapEntry($node.label$, $length(node.namedRecipeInputs)$));$\n$
+>>

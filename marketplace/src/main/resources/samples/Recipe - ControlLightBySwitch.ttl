@@ -1,0 +1,92 @@
+@prefix bigiot: <http://big-iot.eu/core#> .
+@prefix offeringRecipe: <http://w3c.github.io/bigiot/offeringRecipeModel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ControlLightBySwitch: <http://w3c.github.io/bigiot/ControlLightBySwitchRecipe#> .
+@prefix pattern: <http://w3c.github.io/bigiot/RecipePatternModel#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix td: <http://w3c.github.io/wot/w3c-wot-td-ontology.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+offeringRecipe:Recipe
+  rdf:type owl:Class ;
+  rdfs:subClassOf bigiot:Offering ;
+.
+<http://w3c.github.io/bigiot/ControlLightBySwitchRecipe>
+  rdf:type owl:Ontology ;
+  owl:imports <http://w3c.github.io/bigiot/RecipePatternModel> ;
+  owl:imports <http://w3c.github.io/bigiot/offeringRecipeModel> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+pattern:For_Loop
+  rdf:type owl:Class ;
+  rdfs:subClassOf bigiot:Offering ;
+.
+ControlLightBySwitch:UntilTimeLimit
+  rdf:type pattern:For_Loop ;
+  td:hasOutput ControlLightBySwitch:UntilTimeLimit_trigger ;
+  pattern:initType xsd:integer ;
+  pattern:initVariable "timeStep"^^xsd:string ;
+  pattern:initValue "0"^^xsd:string ;
+  pattern:hasRelationalOperator pattern:lessThan ;
+  pattern:hasVariable "timeStep"^^xsd:string ;
+  pattern:hasValue "60"^^xsd:string ;
+  pattern:incrementVariable "timeStep"^^xsd:string ;
+  pattern:incrementValue "1"^^xsd:string ;
+.
+ControlLightBySwitch:CheckSwitch
+  rdf:type bigiot:Offering ;
+  schema:category schema:switchCat ;
+  td:hasInput ControlLightBySwitch:Switch_trigger ;
+  td:hasOutput ControlLightBySwitch:Switch_Value ;
+  bigiot:waitTime "1000"
+.
+ControlLightBySwitch:Light
+  rdf:type bigiot:Offering ;
+  schema:category schema:lightCat ;
+  td:hasInput ControlLightBySwitch:Light_OnOff ;
+.
+ControlLightBySwitch:Interaction_1
+  rdf:type offeringRecipe:Interaction ;
+  offeringRecipe:hasIngredientFrom ControlLightBySwitch:UntilTimeLimit ;
+  offeringRecipe:hasIngredientTo ControlLightBySwitch:CheckSwitch ;
+  offeringRecipe:hasIngredientOutput ControlLightBySwitch:UntilTimeLimit_trigger ;
+  offeringRecipe:hasIngredientInput ControlLightBySwitch:Switch_trigger ;
+  offeringRecipe:hasOperation offeringRecipe:Create ;
+.
+ControlLightBySwitch:Interaction_2
+  rdf:type offeringRecipe:Interaction ;
+  offeringRecipe:hasIngredientFrom ControlLightBySwitch:CheckSwitch ;
+  offeringRecipe:hasIngredientTo ControlLightBySwitch:Light ;
+  offeringRecipe:hasIngredientOutput ControlLightBySwitch:Switch_Value ;
+  offeringRecipe:hasIngredientInput ControlLightBySwitch:Light_OnOff ;
+  offeringRecipe:hasOperation offeringRecipe:Update ;
+.
+ControlLightBySwitch:UntilTimeLimit_trigger
+  rdf:type bigiot:Data ;
+  bigiot:rdfType schema:Number ;
+.
+ControlLightBySwitch:Switch_trigger
+  rdf:type bigiot:Data ;
+  bigiot:rdfType schema:Number ;
+.
+ControlLightBySwitch:Switch_Value
+  rdf:type bigiot:Data ;
+  bigiot:rdfType schema:Text ;
+.
+ControlLightBySwitch:Light_OnOff
+  rdf:type bigiot:Data ;
+  bigiot:rdfType schema:Text ;
+.
+ControlLightBySwitch:ControlLightBySwitchRecipe
+  rdf:type offeringRecipe:Recipe ;
+  schema:category schema:smartOffice ;
+  offeringRecipe:description "Switch a light on and off when a switch is pressed"^^xsd:string ;
+  offeringRecipe:hasIngredient ControlLightBySwitch:UntilTimeLimit ;
+  offeringRecipe:hasIngredient ControlLightBySwitch:CheckSwitch ;
+  offeringRecipe:hasIngredient ControlLightBySwitch:Light ;
+  offeringRecipe:hasInteraction ControlLightBySwitch:Interaction_1 ;
+  offeringRecipe:hasInteraction ControlLightBySwitch:Interaction_2 ;
+.
+

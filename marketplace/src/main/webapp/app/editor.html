@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-7188243-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments)};
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-7188243-5');
+	</script>
+	
+    <meta charset="utf8">
+    <title>BIG IoT - Recipe Editor</title>
+    <!-- bootstrapcdn-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Rappid -->
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/rappid.min.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/joint.ui.dialog.min.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/joint.ui.flashMessage.min.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/freetransform.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/layout.css">
+    <link rel="stylesheet" type="text/css" href="app/styles/editor/editor.css">
+    <link href="app/styles/common.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="index.html"><img src="app/images/logo.png" width="40" height="40" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="cook-recipe.html">Cook Recipe!</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="integrator.html">Add Offering</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="editor.html">Add Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="show-offerings.html">Show Offerings</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </nav>
+    <nav class="toolbar-container nav nav-pills flex-column flex-sm-row">
+        <button id="btn-open" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Open recipe from a file">
+            <i class="material-icons">file_upload</i>
+            <button id="btn-save" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Save recipe to a file">
+                <i class="material-icons">save</i></button>
+            <button id="btn-undo" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Undo"><i class="material-icons">undo</i></button>
+            <button id="btn-redo" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Redo"><i class="material-icons">redo</i></button>
+            <button id="btn-clear" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Clear Paper"><i class="material-icons">clear</i></button>
+            <button id="btn-zoom-in" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Zoom In"><i class="material-icons">zoom_in</i></button>
+            <button id="btn-zoom-out" class="btn btn-dark flex-sm-fill text-sm-center nav-link" data-tooltip="Zoom Out"><i class="material-icons">zoom_out</i></button>
+            <input type="file" id="file-input" accept=".ttl" style="display:none">
+    </nav>
+    </button>
+    <div class="stencil-container"></div>
+    <div class="desc">
+        <form>
+            <div class="form-group">
+                <label for="recipe_name">Recipe Name</label>
+                <input class="form-control" id="recipe_name">
+            </div>
+            <div class="form-group">
+                <label for="recipe_category">Recipe Category</label>
+                <select class="form-control form-control-sm" id="recipe_category">
+                    <option value=0>Select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="2"></textarea>
+            </div>
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-success btn-lg" id="btn-create">Create Recipe!</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div class="paper-container row"></div>
+    <div class="inspector-container row"></div>
+    <div class="inout">
+        <button type="button" class="btn btn-info" id="btn-input" data-tooltip="Add an input to the selected ingredient">Add Input</button>
+        <button type="button" class="btn btn-dark" id="btn-output" data-tooltip="Add an output to the selected ingredient">Add Output</button>
+    </div>
+    <div class="statusbar-container row"><span class="rt-colab"></span></div>
+    <!-- Dependencies: -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="app/scripts/editor/jquery.min.js"></script>
+    <script src="app/scripts/editor/lodash_index.js"></script>
+    <script src="app/scripts/editor/backbone.js"></script>
+    <script src="app/scripts/editor/graphlib.core.js"></script>
+    <script src="app/scripts/editor/dagre.core.js"></script>
+    <script src="app/scripts/editor/keyboard.js"></script>
+    <script src="app/scripts/editor/rappid.min.js"></script>
+    <script src="app/scripts/editor/joint.ui.stencil.min.js"></script>
+    <script src="app/scripts/editor/inspector.js"></script>
+    <script src="app/scripts/editor/stencil.js"></script>
+    <script src="app/scripts/editor/main.js"></script>
+    <script src="app/scripts/editor/joint.ui.dialog.min.js"></script>
+    <script src="app/scripts/editor/joint.ui.flashMessage.min.js"></script>
+    <script src="app/scripts/editor/FileSaver.min.js"></script>
+    <script src="app/scripts/editor/diagram.js"></script>
+    <script>
+    // Uncomment the following line and comment the line after if you
+    // want to use channels.
+    //var app = new Rappid({ channelUrl: 'ws://localhost:4141' });
+    var app = new Rappid;
+    Backbone.history.start();
+    </script>
+</body>
+
+</html>

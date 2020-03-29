@@ -1,0 +1,140 @@
+<div class="row">
+    <a href="#page4" class="btn btn-light btn-lg ml-auto" ng-controller="Scroller" ng-click="backToConfig($event)">Back</a>
+</div>
+<div class="row justify-content-center">
+    <h2 class="text-center">Select Offerings</h2>
+</div>
+<div class="row" ng-controller="OfferingsController">
+    <div class="offerings col-sm-12 col-md-4">
+
+
+        <h3>Ingredients</h3>
+        <div class="card" ng-repeat="ingredient in list_of_ingredients" ng-attr-id="{{ingredient.name}}">
+            <div class="card-body">
+                <h4 class="card-title">{{ingredient.name}}</h4>
+                <form>
+                    <!-- <div ng-repeat="offering in ingredient.list_of_offerings" ng-attr-id="{{offering.id}}"
+                    ng-init="ingredient.selected_offering = ingredient.list_of_offerings[0].id">
+                        <input type="radio" name="{{offering.name}}" 
+                        ng-model="$parent.ingredient.selected_offering" ng-value="offering.id">{{offering.name}}
+                        <i ng-click="onClickOffering($event, offering)" class="material-icons">details</i>
+                    </div> -->
+                    <div ng-repeat="offering in ingredient.list_of_offerings" ng-init="ingredient.presentCardinality = 0">
+                        <input type="checkbox" name="{{offering.name}}"
+                        ng-model="offering.isChecked" ng-value="offering" ng-change="updateSelection(offering, ingredient)"
+                        ng-disabled="ingredient.presentCardinality == ingredient.maxCardinality && !offering.isChecked">{{offering.name}}
+                        <i ng-click="onClickOffering($event, offering)" class="material-icons">details</i>
+                    </div>
+                  
+                </form>
+                <button class="btn btn-info ml-auto mr-auto" id="create" ng-click="setConfig($event, ingredient);configureOSR(ingredient)"> Configure {{ingredient.name}}</button>
+            </div>
+        </div>
+       
+
+    </div>
+    <div class="settings col-sm-12 col-md-8">
+        <div class="settings_list">
+            <h3 ng-if="showParams || showIngredientSettings">{{title}}</h3>
+            <div class="nfp" ng-show="showParams" ng-repeat="(key, value) in nfpMap">
+                <div class="form-group">
+                    <label>{{key}}</label>
+                    <input class="form-control" value={{value}} readonly>
+                </div>
+            </div>
+            
+            
+            <div ng-show="showIngredientSettings">
+                <!-- <h4>Config</h4>
+                <div class="form-group" ng-repeat="configAttribute in configAttributes">
+                    <label>{{configAttribute.key}}</label>
+                    <input type="text" class="form-control" ng-model="configAttribute.value">
+                </div> -->
+                
+                <h4>Offering Selection Rules</h4>
+                <!-- <div class="form-group" ng-repeat="OSR in tempOSRList">
+                    <label>{{OSR.label}}</label>
+                    <input type="text" class="form-control" ng-app="string" ng-if="OSR.OSRCategory == 'OperatorOSR'" ng-model="OSR.operator" placeholder="Operator">
+                    <input type="text" class="form-control" ng-if="OSR.OSRCategory != 'ComplexOSR'" ng-model="OSR.value" placeholder="Value">
+                    <input type="text" class="form-control" ng-if="OSR.OSRCategory == 'ComplexOSR'" ng-model="OSR.offeringURI" placeholder="Offering">
+                </div> -->
+                <!-- new UI for OSRs -->
+                <div class="form-group form-inline">
+                
+	                <div ng-repeat="tempOSR in tempOSRList" class="form-inline">
+	                	<!-- new OSRs to be added -->
+		                <div ng-if="tempOSR.name == null">
+			            	<select class="form-control" ng-options="OSR as OSR.label for OSR in globalTempOSRList" ng-model="selectedOSR" ng-change="captureIndex(selectedOSR)">
+			            		<!-- or use ngSwitch here -->
+			            		<!-- Display inputs based on OSRCategory -->
+			            		<!-- OperatorOSR -->
+								<input ng-if="selectedOSR.OSRCategory == 'OperatorOSR'" 
+			                						type="text" class="form-control" ng-model="selectedOSR.operator" placeholder="Operator*">
+			                	<!-- DirectOSR or OperatorOSR -->
+								<input ng-if="selectedOSR.OSRCategory == 'DirectOSR' || selectedOSR.OSRCategory == 'OperatorOSR'" 
+		                    						type="text" class="form-control" ng-model="selectedOSR.value" placeholder="Value*">
+		                    	<!-- ComplexOSR -->
+		                    	<!-- Display inputs based on rule -->
+		                    	<input ng-if="selectedOSR.rule == 'sameAs'"
+		                    						type="text" class="form-control" ng-model="selectedOSR.offeringURI" placeholder="Offering*">
+			                    <input ng-if="selectedOSR.rule == 'cardinality'"
+		                    						type="text" class="form-control" ng-model="selectedOSR.minCardinality" placeholder="Min Cardinality*">
+			                    <input ng-if="selectedOSR.rule == 'cardinality'"
+		                    						type="text" class="form-control" ng-model="selectedOSR.maxCardinality" placeholder="Max Cardinality*">
+		                    	<input ng-if="selectedOSR.rule == 'combinedPrice'"
+		                    						type="text" class="form-control" ng-model="selectedOSR.operator" placeholder="Operator*">
+			                    <input ng-if="selectedOSR.rule == 'combinedPrice'"
+		                    						type="text" class="form-control" ng-model="selectedOSR.value" placeholder="Value*">
+		                    </select>
+		                    <select class="form-control" ng-model="selectedOSR.operation">
+			                    <option value='AND'>AND</option>
+			                    <option value='OR'>OR</option>
+			                </select>
+		                </div>
+		                
+		                <!-- just display the OSRs already added, disable the input fields -->
+		                <div ng-if="tempOSR.name != null" class="form-inline">
+		                	<!-- <label>{{tempOSR.label}}</label> -->
+		                	<input class="form-control" ng-model="tempOSR.label" disabled>
+			                <!-- OperatorOSR -->
+								<input ng-if="tempOSR.OSRCategory == 'OperatorOSR'" 
+			                						type="text" class="form-control" ng-model="tempOSR.operator" placeholder="Operator*" disabled>
+			                	<!-- DirectOSR or OperatorOSR -->
+								<input ng-if="tempOSR.OSRCategory == 'DirectOSR' || tempOSR.OSRCategory == 'OperatorOSR'" 
+		                    						type="text" class="form-control" ng-model="tempOSR.value" placeholder="Value*" disabled>
+		                    	<!-- ComplexOSR -->
+		                    	<!-- Display inputs based on rule -->
+		                    	<input ng-if="tempOSR.rule == 'sameAs'"
+		                    						type="text" class="form-control" ng-model="tempOSR.offeringURI" placeholder="Offering*" disabled>
+			                    <input ng-if="tempOSR.rule == 'cardinality'"
+		                    						type="text" class="form-control" ng-model="tempOSR.minCardinality" placeholder="Min Cardinality*" disabled>
+			                    <input ng-if="tempOSR.rule == 'cardinality'"
+		                    						type="text" class="form-control" ng-model="tempOSR.maxCardinality" placeholder="Max Cardinality*" disabled>
+		                    	<input ng-if="tempOSR.rule == 'combinedPrice'"
+		                    						type="text" class="form-control" ng-model="tempOSR.operator" placeholder="Operator*" disabled>
+			                    <input ng-if="tempOSR.rule == 'combinedPrice'"
+		                    						type="text" class="form-control" ng-model="tempOSR.value" placeholder="Value*" disabled>
+		                    <select class="form-control" ng-model="tempOSR.operation">
+			                    <option value='AND'>AND</option>
+			                    <option value='OR'>OR</option>
+			                </select>
+			                <a href="#" class="form-control btn btn-outline-danger" ng-click="deleteRow(tempOSR)">X</a>
+		                </div>
+	                </div>
+	                
+	                <a href="#" class="form-control btn btn-outline-success" ng-click="addNewRow()">+</a>
+                </div>
+                <div class="row">
+    				<a href="#" class="btn btn-info ml-auto" ng-click="saveAndApply()">Save & Apply</a>
+    				<a href="#" class="btn btn-light" ng-click="cancel()">Cancel</a>
+				</div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button class="btn btn-light btn-lg ml-auto mr-auto" id="create" ng-click="createScript($event)">Show Application Script</button>
+    <button class="btn btn-info btn-lg ml-auto mr-auto" id="createDeployRRC" ng-controller="RecipeRuntimeConfigurationController" ng-click="createAndDeployRRC($event)">Deploy Recipe Runtime Configuration
+    </button>
+</div>

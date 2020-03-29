@@ -1,0 +1,596 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+schema:Accuracy
+  rdf:type rdfs:Class ;
+  dcterms:source <https://www.w3.org/2005/Incubator/ssn/ssnx/ssn#Accuracy> ;
+  rdfs:label "Accuracy"^^xsd:string ;
+  rdfs:subClassOf schema:SystemProperty ;
+.
+schema:BasicData
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#BasicData> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Data that is either measured or calculated (elaborated) at the same time or over the same time period. " ;
+  rdfs:label "BasicData" ;
+  rdfs:subClassOf schema:QuantitativeValue ;
+.
+schema:Box
+  rdf:type rdfs:Class ;
+  schema:hasCornors schema:Cornors ;
+  rdfs:label "Box"^^xsd:string ;
+  rdfs:subClassOf schema:BasicData ;
+  rdfs:subClassOf schema:Geoshape ;
+.
+schema:Bus
+  rdf:type rdfs:Class ;
+  rdfs:label "Bus"^^xsd:string ;
+  rdfs:subClassOf schema:BusTransportationData ;
+.
+schema:BusStop
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#busStop> ;
+  rdfs:label "Bus stop"^^xsd:string ;
+  rdfs:subClassOf schema:BusTransportationData ;
+.
+schema:BusTransportationData
+  rdf:type rdfs:Class ;
+  rdfs:label "Bus transportation data"^^xsd:string ;
+  rdfs:subClassOf schema:BasicData ;
+.
+schema:Charging
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Charging category class." ;
+  rdfs:label "Charging" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:ChargingPoint
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Charging Point class." ;
+  rdfs:label "Charging Point" ;
+.
+schema:ChargingStation
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Charging Station class." ;
+  rdfs:label "Charging Station" ;
+.
+schema:ChargingStationStatus
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Status of a ChargingStation." ;
+  rdfs:label "ChargingStation Status" ;
+  rdfs:subClassOf schema:QuantitativeValue ;
+.
+schema:Cornors
+  rdf:type rdfs:Class ;
+  schema:hasNorthEastCornor schema:GeoCoordinates ;
+  schema:hasSouthWestCornor schema:GeoCoordinates ;
+  rdfs:label "Cornors"^^xsd:string ;
+  rdfs:subClassOf schema:BasicData ;
+.
+schema:Parking
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Parking category class." ;
+  rdfs:label "Parking" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:ParkingSite
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#ParkingSite> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A parking site." ;
+  rdfs:label "Parking Site" ;
+  rdfs:subClassOf schema:ParkingFacility ;
+.
+schema:ParkingSiteStatus
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#ParkingSiteStatus> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Status of a parking site." ;
+  rdfs:label "Parking Site Status" ;
+  rdfs:subClassOf schema:QuantitativeValue ;
+.
+schema:ParkingSpace
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#ParkingSpace> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment """A single parking space. It is possible to define the same parking space more than once with different properties, 
+		e.g. when there is a different parking assignment for different times.""" ;
+  rdfs:label "Parking Space" ;
+  rdfs:subClassOf schema:ParkingFacility ;
+.
+schema:ParkingSpaceStatus
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#ParkingSapceStatus> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Current status of a parking space." ;
+  rdfs:label "ParkingSpaceStatus" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:PeopleDensityEstimation
+  rdf:type rdfs:Class ;
+  rdf:type sh:Shape ;
+  rdfs:label "Density estimation"^^xsd:string ;
+  rdfs:subClassOf rdfs:Resource ;
+.
+schema:PeopleDensityInArea
+  rdf:type rdfs:Class ;
+  rdfs:label "People Density in an Area"^^xsd:string ;
+.
+schema:PeopleDensityOnBus
+  rdf:type rdfs:Class ;
+  rdfs:label "People Density on Bus"^^xsd:string ;
+.
+schema:Polygon
+  rdf:type rdfs:Class ;
+  schema:geo schema:GeoCoordinates ;
+  rdfs:label "Polygon"^^xsd:string ;
+  rdfs:subClassOf schema:BasicData ;
+  rdfs:subClassOf schema:Geoshape ;
+.
+schema:SystemProperty
+  rdf:type rdfs:Class ;
+  dcterms:source <https://www.w3.org/2005/Incubator/ssn/ssnx/ssn#term-MeasurementProperty> ;
+  rdfs:label "Measurement property"^^xsd:string ;
+  rdfs:subClassOf schema:BasicData ;
+.
+schema:TpegAreaLocation
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TpegAreaLocation> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A geographic or geometric area defined by a TPEG-Loc structure which may include height information for additional geospatial discrimination." ;
+  rdfs:label "tpeg area location" ;
+  rdfs:subClassOf schema:Thing ;
+.
+schema:TpegGeometricArea
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TpegGeometricArea> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A geometric area defined by a centre point and a radius." ;
+  rdfs:label "TpegGeometricArea" ;
+  rdfs:subClassOf schema:TpegAreaLocation ;
+.
+schema:TpegLinearLocation
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TpegLinearLocation> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A linear section along a single road defined between two points on the same road by a TPEG-Loc structure." ;
+  rdfs:label "tpeg linear location" ;
+  rdfs:subClassOf schema:Thing ;
+.
+schema:Traffic
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Traffic category class." ;
+  rdfs:label "Traffic" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:TrafficData
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TrafficData> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Measured or derived values relating to traffic or individual vehicle movements on a specific section or at a specific point on the road network." ;
+  rdfs:label "TrafficData" ;
+  rdfs:subClassOf schema:BasicData ;
+.
+schema:TrafficSpeed
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TrafficSpeed> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Averaged measurements or calculations of traffic speed." ;
+  rdfs:label "TrafficSpeed" ;
+  rdfs:subClassOf schema:TrafficData ;
+.
+schema:Transportation
+  rdf:type rdfs:Class ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "A Transportation category class." ;
+  rdfs:label "Transportation" ;
+  rdfs:subClassOf schema:Enumeration ;
+.
+schema:TravelTimeData
+  rdf:type rdfs:Class ;
+  dcterms:source <http://vocab.datex.org/terms#TravelTimeData> ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:comment "Derived/computed travel time information relating to a linear section of the road network; forecast = true means a forecast for a vehicle at the start of the specified location, forecast = false means calculation/measurement at the end." ;
+  rdfs:label "TravelTimeData" ;
+  rdfs:subClassOf schema:BasicData ;
+.
+schema:atBusLocation
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityOnBus ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCoordinates ;
+  rdfs:label "At Bus Location"^^xsd:string ;
+.
+schema:busTransportation
+  rdf:type schema:Transportation ;
+  rdfs:comment "A sub-category of Transportation to categorize the things relating to bus transportation." ;
+  rdfs:label "busTransportation" ;
+.
+schema:carTransportation
+  rdf:type schema:Transportation ;
+  rdfs:comment "A sub-category of Transportation to categorize the things relating to car transportation." ;
+  rdfs:label "carTransportation" ;
+.
+schema:charging
+  rdf:type schema:Charging ;
+  rdfs:comment "A charging category." ;
+  rdfs:label "charging" ;
+.
+schema:chargingLocation
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCoordinates ;
+  rdfs:comment "Location or geo coordinates of a charging station" ;
+  rdfs:label "chargingLocation" ;
+.
+schema:chargingNumberOfOccupiedStations
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingStationStatus ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment " number of occupied ChargingStation" ;
+  rdfs:label "chargingNumberOfOccupiedStations" ;
+.
+schema:chargingNumberOfVacantStations
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingStationStatus ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment " number of vacant ChargingStation" ;
+  rdfs:label "chargingNumberOfVacantStations" ;
+.
+schema:chargingPointManagement
+  rdf:type schema:Charging ;
+  rdfs:comment "A sub-category of Charging to categorize the things relating to ChargingPoint management." ;
+  rdfs:label "chargingPointMgmtCategory" ;
+.
+schema:chargingStationConnectorType
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#chargingStationConnectorType> ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:label "charging station connector type"@en ;
+.
+schema:chargingStationManagement
+  rdf:type schema:Charging ;
+  rdfs:comment "A sub-category of Charging to categorize the things relating to ChargingStation management." ;
+  rdfs:label "chargingStationMgmtCategory" ;
+.
+schema:chargingStationModelType
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#chargingStationModelType> ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  rdfs:label "charging station model type"@en ;
+.
+schema:chargingStationStatus
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingSapceStatus> ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:ChargingStationStatus ;
+  rdfs:comment "A property that relates ChargingStation with its current status" ;
+  rdfs:label "chargingStationStatus" ;
+.
+schema:chargingStationeStatusTimeStamp
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:DateTime ;
+  rdfs:comment "Timestamp when the status of the ChargingStation has last changed" ;
+  rdfs:label "chargingStationStatusTimeStamp" ;
+.
+schema:distanceFromParkingSpace
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#distanceFromParkingSpace> ;
+  schema:domainIncludes schema:ParkingSpace ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment "distance from parking space" ;
+  rdfs:label "distanceFromParkingSpace" ;
+.
+schema:endTime
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityInArea ;
+  schema:domainIncludes schema:PeopleDensityOnBus ;
+  schema:rangeIncludes schema:DateTime ;
+  rdfs:label "time stamp"^^xsd:string ;
+.
+schema:from
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TpegLinearLocation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCoordinates ;
+  rdfs:comment "The location at the up stream end of the section of road which frames the TPEGFramedPoint." ;
+  rdfs:label "from" ;
+.
+schema:hasAreaOfInterest
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityInArea ;
+  schema:rangeIncludes schema:Polygon ;
+  rdfs:label "has area of interest"^^xsd:string ;
+.
+schema:hasBusId
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:Bus ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:label "has bus id"^^xsd:string ;
+.
+schema:hasBusLineNumber
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:Bus ;
+  schema:rangeIncludes schema:Integer ;
+  rdfs:label "has bus line number"^^xsd:string ;
+.
+schema:hasBusStopName
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:BusStop ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:label "has bus stop name"^^xsd:string ;
+.
+schema:hasChargingPointIdentifier
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingPoint ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Text ;
+  schema:rangeIncludes schema:Url ;
+  rdfs:comment "A property that relates ChargingPoint with ChargingPoint identifier" ;
+  rdfs:label "ChargingPointIdentifier" ;
+.
+schema:hasChargingStation
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:ChargingPoint ;
+  schema:rangeIncludes schema:ChargingStation ;
+  rdfs:label "ChargingPoint has charging stations" ;
+.
+schema:hasChargingStationIdentifier
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ChargingStation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Text ;
+  schema:rangeIncludes schema:Url ;
+  rdfs:comment "A property that relates ChargingStation with ChargingStation identifier" ;
+  rdfs:label "ChargingStationIdentifier" ;
+.
+schema:hasGeoShape
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TpegGeometricArea ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCircle ;
+  rdfs:comment "Geoshape of the TpegGeometricArea." ;
+  rdfs:label "hasGeoShape" ;
+.
+schema:hasParkingFacility
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:ChargingPoint ;
+  schema:rangeIncludes schema:ParkingFacility ;
+  rdfs:comment "Indicates whether Filling Station has Parking Facility or not" ;
+  rdfs:label "has parking facility"@en ;
+.
+schema:hasParkingSapceOrGroupIdentifier
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingSpaceOrGroupIdentifier> ;
+  schema:domainIncludes schema:ParkingSite ;
+  schema:domainIncludes schema:ParkingSpace ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Text ;
+  schema:rangeIncludes schema:Url ;
+  rdfs:comment "A property that relates parking site or space with parking identifier" ;
+  rdfs:label "parkingSapceOrGroupIdentifier" ;
+.
+schema:numberOfChargingPoints
+  rdf:type rdf:Property ;
+  rdf:type owl:DatatypeProperty ;
+  dcterms:source <http://vocab.datex.org/terms#numberOfChargingPoints> ;
+  schema:domainIncludes schema:ChargingPoint ;
+  rdfs:label "number of charging points" ;
+.
+schema:numberOfChargingStations
+  rdf:type rdf:Property ;
+  rdf:type owl:DatatypeProperty ;
+  schema:domainIncludes schema:ChargingStation ;
+  rdfs:label "number of charging stations" ;
+.
+schema:observationTime
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityInArea ;
+  schema:domainIncludes schema:PeopleDensityOnBus ;
+  schema:rangeIncludes schema:DateTime ;
+  rdfs:label "time stamp"^^xsd:string ;
+.
+schema:occupiedSpaceAppeared
+  rdf:type schema:ParkingSpaceStatus ;
+  dcterms:source <http://vocab.datex.org/terms#occupiedSpaceAppeared> ;
+  rdfs:comment "occupied parking space appeared." ;
+  rdfs:label "occupiedSpaceAppeared" ;
+.
+schema:occupiedSpaceDisappeared
+  rdf:type schema:ParkingSpaceStatus ;
+  dcterms:source <http://vocab.datex.org/terms#occupiedSpaceDisappeared> ;
+  rdfs:comment "occupied parking space disappeared." ;
+  rdfs:label "occupiedSpaceDisappeared" ;
+.
+schema:onBus
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityOnBus ;
+  schema:rangeIncludes schema:Bus ;
+  rdfs:label "on bus"^^xsd:string ;
+.
+schema:parking
+  rdf:type schema:Parking ;
+  rdfs:comment "A parking category." ;
+  rdfs:label "parking" ;
+.
+schema:parkingLocation
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingLocation> ;
+  schema:domainIncludes schema:ParkingSpace ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCoordinates ;
+  rdfs:comment "Location or geo coordinates of a parking space" ;
+  rdfs:label "parkingLocation" ;
+.
+schema:parkingNumberOfOccupiedSpaces
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingNumberOfOccupiedSpaces> ;
+  schema:domainIncludes schema:ParkingSiteStatus ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment "parking number of occupied spaces" ;
+  rdfs:label "parkingNumberOfOccupiedSpaces" ;
+.
+schema:parkingNumberOfVacantSpaces
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingNumberOfVacantSpaces> ;
+  schema:domainIncludes schema:ParkingSiteStatus ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment "parking number of vacant spaces" ;
+  rdfs:label "parkingNumberOfVacantSpaces" ;
+.
+schema:parkingSapceStatus
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingSapceStatus> ;
+  schema:domainIncludes schema:ParkingSpace ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:ParkingSpaceStatus ;
+  rdfs:comment "A property that relates parking space with its current status" ;
+  rdfs:label "parkingSapceStatus" ;
+.
+schema:parkingSiteManagement
+  rdf:type schema:Parking ;
+  rdfs:comment "A sub-category of Parking to categorize the things relating to parking space management."^^xsd:string ;
+  rdfs:label "A Parking Site Management category"^^xsd:string ;
+.
+schema:parkingSiteStatus
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#parkingSiteStatus> ;
+  schema:domainIncludes schema:ParkingSite ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:ParkingSiteStatus ;
+  rdfs:comment "The status of the parking site " ;
+  rdfs:label "parkingSiteStatus" ;
+.
+schema:parkingSpaceManagement
+  rdf:type schema:Parking ;
+  rdfs:comment "A sub-category of Parking to categorize the things relating to parking space management." ;
+  rdfs:label "parkingSpaceMgmtCategory" ;
+.
+schema:parkingSpaceStatusTimeStamp
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:ParkingSpace ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:DateTime ;
+  rdfs:comment "Timestamp when the status of the parking space has last changed" ;
+  rdfs:label "parkingSpaceStatusTimeStamp" ;
+.
+schema:peopleCount
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityInArea ;
+  schema:rangeIncludes schema:Integer ;
+  rdfs:label "people count"^^xsd:string ;
+.
+schema:peopleDensityEstimationInArea
+  rdf:type schema:PeopleDensityEstimation ;
+  rdfs:label "People Density Estimation in an Area property"^^xsd:string ;
+.
+schema:peopleDensityEstimationOnBus
+  rdf:type schema:PeopleDensityEstimation ;
+  rdfs:label "People Density Estimation on Bus property"^^xsd:string ;
+.
+schema:potentialSpaceAppeared
+  rdf:type schema:ParkingSpaceStatus ;
+  dcterms:source <http://vocab.datex.org/terms#potentialSpaceAppeared> ;
+  rdfs:comment "potential parking space appeared." ;
+  rdfs:label "potentialSpaceAppeared" ;
+.
+schema:potentialSpaceDisappeared
+  rdf:type schema:ParkingSpaceStatus ;
+  dcterms:source <http://vocab.datex.org/terms#potentialSpaceDisappeared> ;
+  rdfs:comment "potential parking space disappeared." ;
+  rdfs:label "potentialSpaceDisappeared" ;
+.
+schema:speed
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TrafficSpeed ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment "A value of speed expressed in kilometres per hour." ;
+  rdfs:label "traffic speed" ;
+.
+schema:startTime
+  rdf:type owl:ObjectProperty ;
+  schema:domainIncludes schema:PeopleDensityInArea ;
+  schema:domainIncludes schema:PeopleDensityOnBus ;
+  schema:rangeIncludes schema:DateTime ;
+  rdfs:label "time stamp"^^xsd:string ;
+.
+schema:to
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TpegLinearLocation ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:GeoCoordinates ;
+  rdfs:comment "The location at the down stream end of the section of road which frames the TPEGFramedPoint." ;
+  rdfs:label "to" ;
+.
+schema:totalCapacity
+  rdf:type rdf:Property ;
+  dcterms:source <http://vocab.datex.org/terms#totalCapacity> ;
+  schema:domainIncludes schema:ParkingSite ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Number ;
+  rdfs:comment "Total number of car parking spaces" ;
+  rdfs:label "totalCapacity" ;
+.
+schema:tpegAreaDescriptor
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TpegGeometricArea ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Text ;
+  rdfs:comment "Name of area." ;
+  rdfs:label "tpegAreaDescriptor" ;
+.
+schema:traffic
+  rdf:type schema:Traffic ;
+  rdfs:comment "A traffic category." ;
+  rdfs:label "traffic" ;
+.
+schema:trafficInformation
+  rdf:type schema:Traffic ;
+  rdfs:comment "A sub-category of Traffic to categorize the things relating to bus traffic information." ;
+  rdfs:label "trafficInformationCategory" ;
+.
+schema:trafficMonitoring
+  rdf:type schema:Traffic ;
+  rdfs:comment "A sub-category of Traffic to categorize the things relating to Traffic monitoring." ;
+  rdfs:label "trafficMonitoringCategory" ;
+.
+schema:transportation
+  rdf:type schema:Transportation ;
+  rdfs:comment "A transportation category." ;
+  rdfs:label "transportation" ;
+.
+schema:travelTime
+  rdf:type rdf:Property ;
+  schema:domainIncludes schema:TravelTimeData ;
+  schema:isPartOf <http://mobility.schema.org> ;
+  schema:rangeIncludes schema:Time ;
+  rdfs:comment "Derived/computed travel time information relating to a specific group of locations." ;
+  rdfs:label "travel time" ;
+.

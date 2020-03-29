@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" ng-app="market">
+
+<head>
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-7188243-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments)};
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-7188243-5');
+	</script>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BIG IoT - Recipe Cooker</title>
+    <!-- angular scripts -->
+    <script type="text/javascript" src="app/scripts/recipe/vendor/angular.min.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/vendor/map.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <!-- angular controllers  -->
+    <script type="text/javascript" src="app/scripts/recipe/controllers/locationController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/serviceController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/recipeController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/recipeRuntimeConfigurationController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/offeringsController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/applicationController.js"></script>
+    <script type="text/javascript" src="app/scripts/recipe/controllers/scrollController.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- vendor styles -->
+    <link rel="stylesheet" href="app/styles/recipe/vendor/joint.ui.stencil.min.css" />
+    <link rel="stylesheet" href="app/styles/recipe/vendor/joint.css" />
+    <link rel="stylesheet" href="app/styles/recipe/vendor/joint.ui.contextToolbar.min.css" />
+    <link rel="stylesheet" href="app/styles/recipe/vendor/joint.ui.popup.min.css" />
+    <link rel="stylesheet" href="app/styles/recipe/vendor/joint.ui.dialog.min.css" />
+    <!-- custom styles -->
+    <link rel="stylesheet" href="app/styles/recipe/diagram.css" />
+    <link href="app/styles/recipe/recipe.css" rel="stylesheet">
+    <link href="app/styles/common.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="index.html"><img src="app/images/logo.png" width="40" height="40" ></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="cook-recipe.html">Cook Recipe!</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="integrator.html">Add Offering</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="editor.html">Add Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="show-offerings.html">Show Offerings</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </nav>
+    <!-- content -->
+    <div class="container">
+        <section class="card" id="page1" ng-controller="LocationController">
+            <div ng-include="'app/views/city.html'"></div>
+        </section>
+        <!-- second div for selecting the service-->
+        <section class="card" id="page2" ng-controller="ServiceController">
+            <div ng-include="'app/views/services.html'"></div>
+        </section>
+        <!-- third div for selection of recipe or creation of new one-->
+        <section class="card" id="page3" ng-controller="RecipeController">
+            <div ng-include="'app/views/recipe-instances.html'"></div>
+        </section>
+        <!-- show the figure if the existing recipe is selected,
+         else if editor opens then it should not be loaded -->
+        <section class="card" id="page4" ng-controller="RecipeController">
+            <div ng-include="'app/views/graph.html'"></div>
+        </section>
+        <!-- fifth div for selection of ingredients-->
+        <section class="card" id="page5" ng-controller="OfferingsController">
+            <div ng-include="'app/views/offerings.html'"></div>
+        </section>
+        <!-- Deploy View -->
+        <section class="card" id="page6" ng-controller="RecipeRuntimeConfigurationController">
+            <div ng-include="'app/views/deploy.html'"></div>
+        </section>
+        <!-- the application script-->
+        <section class="card" id="page7" ng-controller="ApplicationController">
+            <div ng-include="'app/views/script.html'"></div> 
+        </section>
+    </div>
+    <!-- /container -->
+    <!-- style scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <!-- city -->
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.4.15"></script>
+    <script src="app/scripts/recipe/style.js"></script>
+    <!-- dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/1.1.0/joint.min.js"></script>
+    <script src="app/scripts/recipe/vendor/dagre.min.js"></script>
+    <script src="app/scripts/recipe/vendor/graphlib.js"></script>
+    <script src="app/scripts/recipe/vendor/joint.ui.contextToolbar.min.js"></script>
+    <script src="app/scripts/recipe/vendor/joint.ui.popup.min.js"></script>
+    <script src="app/scripts/recipe/vendor/joint.ui.dialog.min.js"></script>
+    <script src="app/scripts/recipe/vendor/joint.layout.DirectedGraph.min.js"></script>
+    <script src="app/scripts/editor/joint.ui.stencil.min.js"></script>
+    <script src="app/scripts/editor/diagram.js"></script>
+</body>
+
+</html>

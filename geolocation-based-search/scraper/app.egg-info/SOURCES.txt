@@ -1,0 +1,17 @@
+setup.py
+app/__init__.py
+app/items.py
+app/middlewares.py
+app/pipelines.py
+app/proxy.txt
+app/settings.py
+app.egg-info/PKG-INFO
+app.egg-info/SOURCES.txt
+app.egg-info/dependency_links.txt
+app.egg-info/entry_points.txt
+app.egg-info/top_level.txt
+app/spiders/__init__.py
+app/spiders/emlak.py
+app/spiders/location.py
+app/spiders/oto.py
+app/spiders/proxy.py

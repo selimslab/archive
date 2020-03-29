@@ -1,0 +1,136 @@
+{
+	"@context": [{
+			"xsd": "http://www.w3.org/2001/XMLSchema#",
+			"schema": "http://schema.org/",
+			"bigiot": "http://big-iot.eu/core#",
+			"geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+			"ssn": "https://www.w3.org/2005/Incubator/ssn/ssnx/ssn#",
+			"smartBuilding": "http://w3c.github.io/bigiot/smartBuilding#",
+
+			"offering": "bigiot:Offering",
+
+			"name": "schema:name",
+			"endpoint": "bigiot:endpoint",
+			"region": "schema:spatialCoverage",
+			"price": "schema:priceSpecification",
+			"place": "schema:Place",
+			"address": "schema:address",
+			"location": "ssn:hasLocation",
+			"amount": {
+				"@id": "schema:price",
+				"@type": "xsd:double"
+			},
+			"currency": "schema:priceCurrency",
+			"license": {
+				"@id": "schema:license",
+				"@container": "@index"
+			},
+			"providerId": "bigiot:providerId",
+			"localId": "bigiot:offeringId",
+			"category": "schema:category",
+
+			"accessInterfaceType": "bigiot:accessInterfaceType",
+			"supportsStreaming": "bigiot:supportsStreaming",
+			"supportsSubscription": "bigiot:supportsSubscription",
+			"method": "bigiot:endpointType",
+			"url": "schema:url",
+
+			"accounting": "bigiot:accountingModel",
+
+			"rdfType": "bigiot:rdfType",
+
+			"licenseType": "bigiot:licenseType",
+
+			"parking": "schema:parking",
+			"parkingSiteManagement": "schema:parkingSiteManagement",
+			"parkingSpaceManagement": "schema:parkingSpaceManagement",
+			"traffic": "schema:traffic",
+			"environment": "schema:environment",
+
+			"radius": {
+				"@id": "schema:radius",
+				"@type": "xsd:int"
+			},
+			"lat": {
+				"@id": "geo:lat",
+				"@type": "xsd:double"
+			},
+			"long": {
+				"@id": "geo:long",
+				"@type": "xsd:double"
+			}
+		}, {
+			"xsd": "http://www.w3.org/2001/XMLSchema#",
+			"td": "http://w3c.github.io/wot/w3c-wot-td-ontology.owl#",
+			"Thing": "td:Thing",
+			"base": {
+				"@id": "td:hasThingDescription",
+				"@type": "@id"
+			},
+			"hrefs": {
+				"@id": "td:hasInteraction",
+				"@type": "@id",
+				"@container": "@set"
+			},
+			"href": {
+				"@id": "td:hasInteraction",
+				"@type": "@id"
+			},
+			"Interaction": "td:Interaction",
+			"interactions": {
+				"@id": "td:isAssociatedTo",
+				"@type": "@id",
+				"@container": "@set"
+			},
+			"links": {
+				"@id": "td:hasInteraction",
+				"@type": "@id",
+				"@container": "@set"
+			},
+			"priority": {
+				"@id": "td:hasPriority",
+				"@type": "xsd:integer"
+			},
+			"security": "td:supportsSecurity",
+			"properties": {
+				"@id": "td:hasProperty",
+				"@container": "@set"
+			},
+			"Property": "td:Property",
+			"valueType": "td:hasValueType",
+			"stability": {
+				"@id": "td:hasStability",
+				"@type": "xsd:integer"
+			},
+			"writable": {
+				"@id": "td:isWritable",
+				"@type": "xsd:boolean"
+			},
+			"events": {
+				"@id": "td:hasEvent",
+				"@container": "@set"
+			},
+			"Event": "td:Event",
+			"property": {
+				"@id": "td:forProperty",
+				"@type": "@id"
+			},
+			"inputData": {
+				"@id": "td:hasInput"
+			},
+			"outputData": {
+				"@id": "td:hasOutput"
+			},
+			"actions": {
+				"@id": "td:hasAction",
+				"@container": "@set"
+			},
+			"Action": "td:Action",
+			"associations": "td:isAssociatedTo",
+			"child": "td:isChildOf",
+			"parent": "td:isParentOf"
+		}, {
+			"schema": "http://schema.org"
+		}
+	]
+}

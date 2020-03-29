@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <div class=row>
+        <div class="col-6">
+          <input type="text" class="form-control " placeholder="İlan numarası" name="id" id='id'>
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" name='radius 'id='radius' placeholder="Mesafe (metre)">
+        </div>
+    </div>
+
+	<div id="map"></div>
+	
+    <!-- render dynamically -->
+  <div id="results"></div>
+
+  {% for item in items %}
+    <a src="{{item.link}}">{{item.title}}</a>
+  {% endfor %}
+  
+  <script src="static/location.js"></script>
+  <script src="static/id.js"></script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxyvVo8RuWJiEQ12EiyMHGwTYkRMjcEIk&callback=initMap">
+  </script>
+ 
+
+
+{% endblock %}

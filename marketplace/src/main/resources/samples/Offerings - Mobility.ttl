@@ -1,0 +1,315 @@
+# -*- ttl-indent-level: 8; -*-
+@prefix indicator: <http://worldbank.270a.info/classification/indicator/> .
+@prefix :      <http://big-iot.eu/core#> .
+@prefix bigiot-core: <http://big-iot.eu/core#> .
+@prefix offeringRecipe: <http://w3c.github.io/bigiot/offeringRecipeModel#> .
+@prefix qudt:  <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> .
+@prefix country: <http://worldbank.270a.info/classification/country/> .
+@prefix PerfectSwitchLightRecipeInstance1502037889195: <http://w3c.github.io/bigiot/PerfectSwitchLightRecipeInstance1502037889195#> .
+@prefix year:  <http://reference.data.gov.uk/id/year/> .
+@prefix owl:   <https://www.w3.org/2002/07/owl#> .
+@prefix g-finances: <http://worldbank.270a.info/graph/world-bank-finances> .
+@prefix lending-type: <http://worldbank.270a.info/classification/lending-type/> .
+@prefix saref: <https://w3id.org/saref#> .
+@prefix sdmx:  <http://purl.org/linked-data/sdmx#> .
+@prefix project: <http://worldbank.270a.info/classification/project/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix source: <http://worldbank.270a.info/classification/source/> .
+@prefix ns1:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix ControlLightBySwitch: <http://w3c.github.io/bigiot/ControlLightBySwitchRecipe#> .
+@prefix ssn:   <https://www.w3.org/2005/Incubator/ssn/ssnx/ssn#> .
+@prefix qb:    <http://purl.org/linked-data/cube#> .
+@prefix stats: <http://stats.270a.info/vocab#> .
+@prefix xml:   <http://www.w3.org/XML/1998/namespace> .
+@prefix property: <http://worldbank.270a.info/property/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix wgs:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix PerfectSwitchLightRecipe: <http://w3c.github.io/bigiot/PerfectSwitchLightRecipe#> .
+@prefix void:  <http://rdfs.org/ns/void#> .
+@prefix qu:    <http://purl.org/NET/ssnx/qu/qu#> .
+@prefix loan-status: <http://worldbank.270a.info/classification/loan-status/> .
+@prefix global-circulation-model: <http://worldbank.270a.info/classification/global-circulation-model/> .
+@prefix classification: <http://worldbank.270a.info/classification/> .
+@prefix g-projects: <http://worldbank.270a.info/graph/world-bank-projects-and-operations> .
+@prefix g-climates: <http://worldbank.270a.info/graph/world-bank-climates> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#> .
+@prefix dbp:   <http://dbpedia.org/property/> .
+@prefix mobapplication: <http://w3c.github.io/bigiot/mobapplication#> .
+@prefix wbld:  <http://worldbank.270a.info/> .
+@prefix income-level: <http://worldbank.270a.info/classification/income-level/> .
+@prefix dbr:   <http://dbpedia.org/resource/> .
+@prefix RouteToParking: <http://w3c.github.io/bigiot/RouteToParking#> .
+@prefix topic: <http://worldbank.270a.info/classification/topic/> .
+@prefix region: <http://worldbank.270a.info/classification/region/> .
+@prefix bigiot: <http://big-iot.eu/core#> .
+@prefix SwitchCat: <http://w3c.github.io/bigiot/SwitchCat#> .
+@prefix d-finances: <http://worldbank.270a.info/dataset/world-bank-finances/> .
+@prefix schema: <http://schema.org/> .
+@prefix grddl: <http://www.w3.org/2003/g/data-view#> .
+@prefix mobility: <http://big-iot.eu/mobility#> .
+@prefix PerfectSwitchLightRecipeInstance1502037501959: <http://w3c.github.io/bigiot/PerfectSwitchLightRecipeInstance1502037501959#> .
+@prefix pattern: <http://w3c.github.io/bigiot/RecipePatternModel#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix d-indicators: <http://worldbank.270a.info/dataset/world-bank-indicators> .
+@prefix g-void: <http://worldbank.270a.info/graph/void> .
+@prefix geo:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix scenario: <http://worldbank.270a.info/classification/scenario/> .
+@prefix rdfa:  <http://www.w3.org/ns/rdfa#> .
+@prefix currency: <http://worldbank.270a.info/classification/currency/> .
+@prefix g-meta: <http://worldbank.270a.info/graph/meta> .
+@prefix sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix RouteToParkingSpot: <http://w3c.github.io/bigiot/RouteToParkingSpot#> .
+@prefix offeringRecipeInstance: <http://w3c.github.io/bigiot/offeringRecipeInstanceModel#> .
+@prefix ControlLightBySwitchAndMotionDetector: <http://w3c.github.io/bigiot/ControlLightBySwitchAndMotionDetector#> .
+@prefix d-climates: <http://worldbank.270a.info/dataset/world-bank-climates/> .
+@prefix td:    <http://w3c.github.io/wot/w3c-wot-td-ontology.owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix variable: <http://worldbank.270a.info/classification/variable/> .
+@prefix g-indicators: <http://worldbank.270a.info/graph/world-development-indicators> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+
+
+
+<http://w3c.github.io/bigiot/OSMGeoCordinatesOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [
+                bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                bigiot:endpointType "HTTP_GET" ;
+                schema:url                  "http://localhost:8080/marketplace/gateway/getGeoCordinates"
+                ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        td:hasInput
+                [ bigiot:rdfType  schema:PhysicalAddress ;
+                  schema:name     "userAddress"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  schema:SourceCoordinates ;
+                  schema:name     "GeoCoordinates"
+                ] ;
+        schema:category            schema:geoCordinatesCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Open Street Maps" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" .
+
+<http://w3c.github.io/bigiot/MailChimpOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType "HTTP_POST" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/sendEmail"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        td:hasInput
+                [ bigiot:rdfType  bigiot:text ;
+                  schema:name     "body"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  xsd:string ;
+                  schema:name     "subject"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  bigiot:EMailAddress ;
+                  schema:name     "receiverAddress"
+                ] ;
+        schema:category            bigiot:sendEmailCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "MailChimp Free Email" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" .
+
+<http://w3c.github.io/bigiot/MailjetOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType "HTTP_POST" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/sendEmail"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        td:hasInput
+                [ bigiot:rdfType  bigiot:EMailAddress ;
+                  schema:name     "receiverAddress"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  bigiot:text ;
+                  schema:name     "body"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  xsd:string ;
+                  schema:name     "subject"
+                ] ;
+        schema:category            bigiot:sendEmailCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Mailjet Email Service" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" .
+
+<http://w3c.github.io/bigiot/MVVParkingOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType "HTTP_GET" ; 
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/getAllParkSites"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:category            schema:parkingLocationsCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "MVV Parking" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" ;
+        td:hasOutput               [ bigiot:rdfType  schema:parkingLocations ;
+                                     schema:name     "parkingLocations"
+                                   ] .
+								   
+<http://w3c.github.io/bigiot/OSMDirectionsOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType "HTTP_POST" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/getDirections"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        td:hasInput
+                [ bigiot:rdfType  schema:DestinationCoordinates ;
+                  schema:name     "destination"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  schema:SourceCoordinates ;
+                  schema:name     "source"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  bigiot:text ;
+                  schema:name     "directions"
+                ] ;
+        schema:category            schema:directionsCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Open Street Maps" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" .
+
+<http://w3c.github.io/bigiot/GoogleGeoCordinatesOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [
+                bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                schema:url                  "http://localhost:8080/marketplace/gateway/getGeoCordinates" ;
+                bigiot:endpointType "HTTP_GET"
+                ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        td:hasInput
+                [ bigiot:rdfType  schema:PhysicalAddress ;
+                  schema:name     "userAddress"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  schema:SourceCoordinates ;
+                  schema:name     "GeoCoordinates"
+                ] ;
+        schema:category            schema:geoCordinatesCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Google Maps" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.002000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" .
+		
+<http://w3c.github.io/bigiot/FindNearestTargetOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_POST" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/getNearestParkSite"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               [ schema:address "Germany" ] ;
+        schema:category            schema:nearestLocationCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Find Nearest Target" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Germany" ;
+        td:hasInput
+                [ bigiot:rdfType  schema:parkingLocations ;
+                  schema:name     "allParkSites"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  schema:SourceCoordinates ;
+                  schema:name     "userCoordinates"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  xsd:string ;
+                  schema:name     "nearesrParkName"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  schema:DestinationCoordinates ;
+                  schema:name     "nearesrParkCoordinates"
+                ] .
+
+<http://w3c.github.io/bigiot/GoogleDirectionsOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_POST" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/getDirections"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               [ schema:address "Berlin" ] ;
+        schema:category            schema:directionsCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Google Maps" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" ;
+        td:hasInput
+                [ bigiot:rdfType  schema:SourceCoordinates ;
+                  schema:name     "source"
+                ] ;
+        td:hasInput
+                [ bigiot:rdfType  schema:DestinationCoordinates ;
+                  schema:name     "destination"
+                ] ;
+        td:hasOutput
+                [ bigiot:rdfType  bigiot:text ;
+                  schema:name     "directions"
+                ] .
+
+<http://w3c.github.io/bigiot/DBParkingOffering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_GET" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/getAllParkSites"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               [ schema:address "Berlin" ] ;
+        schema:category            schema:parkingLocationsCategory ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "DB Mindbox Parking" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" ;
+        td:hasInput            [ ] ;
+        td:hasOutput           [ bigiot:rdfType   schema:Text ;
+                                 schema:name      "parkingLocations" ;
+                                 td:hasValueType  "list"
+                               ] .

@@ -1,0 +1,8 @@
+eve
+scrapinghub==2.0.3
+gunicorn
+flask-cors
+schedule
+
+
+

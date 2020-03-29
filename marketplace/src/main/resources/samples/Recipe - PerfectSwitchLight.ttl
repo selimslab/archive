@@ -1,0 +1,206 @@
+@prefix PerfectSwitchLightRecipe: <http://w3c.github.io/bigiot/PerfectSwitchLightRecipe#> .
+@prefix bigiot: <http://big-iot.eu/core#> .
+@prefix offeringRecipe: <http://w3c.github.io/bigiot/offeringRecipeModel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pattern: <http://w3c.github.io/bigiot/RecipePatternModel#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix td: <http://w3c.github.io/wot/w3c-wot-td-ontology.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ssn:   <https://www.w3.org/2005/Incubator/ssn/ssnx/ssn#> .
+
+offeringRecipe:Recipe
+  rdf:type owl:Class ;
+  rdfs:subClassOf bigiot:Offering ;
+.
+<http://w3c.github.io/bigiot/PerfectSwitchLightRecipe>
+  rdf:type owl:Ontology ;
+  owl:imports <http://w3c.github.io/bigiot/RecipePatternModel> ;
+  owl:imports <http://w3c.github.io/bigiot/offeringRecipeModel> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.
+
+PerfectSwitchLightRecipe:PerfectLight
+        a                bigiot:Offering ;
+        schema:category  schema:lightCat ;
+        td:hasInput  PerfectSwitchLightRecipe:PerfectLight_input_perfectLightinput1 .
+
+PerfectSwitchLightRecipe:PerfectSwitch_output_perfectSwitchOutput1
+        a               bigiot:Data ;
+        bigiot:rdfType  schema:Text .
+
+PerfectSwitchLightRecipe:PerfectLight_input_perfectLightinput1
+        a               bigiot:Data ;
+        bigiot:rdfType  schema:Text .
+
+PerfectSwitchLightRecipe:PerfectSwitch
+        a                 bigiot:Offering ;
+        schema:category   schema:switchCat ;
+        td:hasInput   PerfectSwitchLightRecipe:PerfectSwitch_input_perfectSwitchInput1 ;
+        td:hasOutput  PerfectSwitchLightRecipe:PerfectSwitch_output_perfectSwitchOutput1 .
+
+PerfectSwitchLightRecipe:Interaction1
+        a                               offeringRecipe:Interaction ;
+        offeringRecipe:hasIngredientFrom
+                PerfectSwitchLightRecipe:PerfectSwitch ;
+        offeringRecipe:hasIngredientInput
+                PerfectSwitchLightRecipe:PerfectLight_input_perfectLightinput1 ;
+        offeringRecipe:hasIngredientOutput
+                PerfectSwitchLightRecipe:PerfectSwitch_output_perfectSwitchOutput1 ;
+        offeringRecipe:hasIngredientTo  PerfectSwitchLightRecipe:PerfectLight ;
+        offeringRecipe:hasOperation     offeringRecipe:Update .
+
+PerfectSwitchLightRecipe:PerfectSwitch_input_perfectSwitchInput1
+        a               bigiot:Data ;
+        bigiot:rdfType  schema:Number .
+
+PerfectSwitchLightRecipe:PerfectSwitchLightRecipe
+        a                              offeringRecipe:Recipe ;
+        schema:category                schema:smartBuilding ;
+        offeringRecipe:description     "PerfectSwitchLightRecipe" ;
+        offeringRecipe:hasIngredient   PerfectSwitchLightRecipe:PerfectSwitch , PerfectSwitchLightRecipe:PerfectLight ;
+        offeringRecipe:hasInteraction  PerfectSwitchLightRecipe:Interaction1 .
+
+## Dummy Offerings for this recipe
+
+<http://w3c.github.io/bigiot/DummySwitch2Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_GET" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummySwitch2"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Munich" ;
+        schema:category            schema:switchCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Dummy-Switch2" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Munich" ;
+        td:hasInput            [ bigiot:rdfType  schema:Number ;
+                                     schema:name     "trigger"
+                                   ] ;
+        td:hasOutput           [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "on_off" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z2" .
+
+<http://w3c.github.io/bigiot/DummySwitch3Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_GET" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummySwitch3"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Munich" ;
+        schema:category            schema:switchCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Dummy-Switch3" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Munich" ;
+        td:hasInput            [ bigiot:rdfType  schema:Number ;
+                                     schema:name     "trigger"
+                                   ] ;
+        td:hasOutput           [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "on_off" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z3" .
+        
+<http://w3c.github.io/bigiot/DummySwitch4Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_GET" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummySwitch4"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Berlin" ;
+        schema:category            schema:switchCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Dummy-Switch4" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" ;
+        td:hasInput            [ bigiot:rdfType  schema:Number ;
+                                     schema:name     "trigger"
+                                   ] ;
+        td:hasOutput           [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "on_off" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z4" .
+
+<http://w3c.github.io/bigiot/DummyLight2Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_PUT" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummyLight2"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Munich" ;
+        schema:category            schema:lightCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Light-Dummy2" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Munich" ;
+        td:hasInput            	   [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "status" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z2" .
+
+<http://w3c.github.io/bigiot/DummyLight3Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_PUT" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummyLight3"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Munich" ;
+        schema:category            schema:lightCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Light-Dummy3" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Munich" ;
+        td:hasInput                [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "status" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z3" .
+
+<http://w3c.github.io/bigiot/DummyLight4Offering>
+        a                          bigiot:Offering ;
+        bigiot:endpoint            [ bigiot:accessInterfaceType  "BIGIOT_LIB" ;
+                                     bigiot:endpointType         "HTTP_PUT" ;
+                                     schema:url                  "http://localhost:8080/marketplace/gateway/dummyLight4"
+                                   ] ;
+        bigiot:providerId          "SP-NG-01" ;
+        schema:Place               "Berlin" ;
+        schema:category            schema:lightCat ;
+        schema:license             "OPEN_DATA_LICENSE" ;
+        schema:name                "Light-Dummy4" ;
+        schema:priceSpecification  [ bigiot:accountingModel  "PER_ACCESS" ;
+                                     schema:price            "0.001000"^^xsd:double ;
+                                     schema:priceCurrency    "EUR"
+                                   ] ;
+        schema:spatialCoverage     "Berlin" ;
+        td:hasInput                [ bigiot:rdfType   schema:Text ;
+                                     schema:name      "status" ;
+                                     td:hasValueType  "string"
+                                   ] ;
+        ssn:hasLocation            "31.636.Z4" .

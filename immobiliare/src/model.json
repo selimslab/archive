@@ -1,0 +1,26 @@
+
+
+{
+
+	{
+		link,
+		broker,
+		subdomain,
+		price,
+		il,
+		ilce,
+		semt,
+		coordinates,
+		kat,
+		m2,
+		bina yaşı,
+		...
+		images = [  ]
+	},
+
+	{
+		...
+	}
+
+
+}

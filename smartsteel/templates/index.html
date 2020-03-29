@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Steel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+</head>
+<body>
+<div class="container">
+    {% if tasks %}
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>timestamp</th>
+            <th>temperature</th>
+            <th>duration</th>
+        </tr>
+
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.timestamp }}</td>
+            <td>{{ task.temperature }}</td>
+            <td>{{ task.duration }}</td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+    <h2>Welcome to the tasks page</h2>
+    {% endif %}
+
+</div>
+</body>
+</html>
