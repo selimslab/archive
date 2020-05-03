@@ -210,7 +210,6 @@ class Summarizer(object):
     def apply_teleportation_and_threshold(self, cosine_matrix):
 
         similarity_threshold = 0.1
-        d = teleportation_rate = 0.15
 
         B = np.zeros(cosine_matrix.shape)
 
@@ -221,7 +220,7 @@ class Summarizer(object):
             B[i, columns] = 1 / len(columns)
 
         U = np.full(cosine_matrix.shape, 1 / N)
-
+        d = 0.15 # teleportation_rate
         markov_matrix = np.dot(d, U) + np.dot((1 - d), B)
 
         return markov_matrix
@@ -264,3 +263,27 @@ if __name__ == "__main__":
         else:
             master.summarize(filename)
             continue
+
+
+def apply_teleportation_and_threshold(transition_matrix):
+    similarity_threshold = 0.1
+
+    transitions_above_threshold = np.zeros(transition_matrix.shape)
+
+    N = len(transition_matrix)
+
+    for i in range(N):
+        columns = np.where(transition_matrix[i] > similarity_threshold)[0]
+        transitions_above_threshold[i, columns] = 1 / len(columns)
+
+    teleport_rate = 0.15
+
+    uniform_matrix = np.full(transition_matrix.shape, 1 / N)
+
+    teleport_probabilities = np.dot(teleport_rate, uniform_matrix)
+
+    random_walk_probabilities = np.dot((1 - teleport_rate), transitions_above_threshold)
+
+    markov_matrix = teleport_probabilities + random_walk_probabilities
+
+    return markov_matrix
