@@ -93,7 +93,6 @@ using namespace std;
           tie(Fx,Fy) = calculateGradient(goalPosition, robotPosition, obstaclePositions);
         }
 
-        // TODO: Calculate target velocity
         float v = 0;
         float w = 0;
 
@@ -158,15 +157,14 @@ using namespace std;
 
 
     void setRobotSpeed(float transVel, float rotVel) {
-      //Convert speed to rad/sec
+      // Convert speed to rad/sec
       transVel = transVel / wheelCircumference * 2 * PI;
       rotVel = rotVel * (topViewRobotCircumference / wheelCircumference);
 
-      //Give speed to both left and right motor
+      // Give speed to both left and right motor
       float leftMotorSpeed = transVel - rotVel;
       float rightMotorSpeed = -transVel - rotVel;
 
-      // Set the limits (DO NOT CHANGE THIS PART)
       int tau_max = 5;
 
       if (abs(leftMotorSpeed) > tau_max) {

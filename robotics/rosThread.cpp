@@ -10,8 +10,6 @@
 using namespace std;
 RosThread::RosThread()
 {
-    // Intialize your global variables here
-
     robotX = 0;
     robotY = 0;
     robotTh = 0;
@@ -48,10 +46,7 @@ void RosThread::work(){
     ros::Rate loop(10);
     while(ros::ok())
     {
-        // Write your algorithm here
 
-        
-        
         demoLoop();
         ros::spinOnce();
         loop.sleep();

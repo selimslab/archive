@@ -1,8 +1,35 @@
 import face_recognition
-from util import get_known_faces, save_dict
+import os
+import pickle
+
 from flask import Flask, jsonify, request
 from requests.exceptions import RequestException, Timeout, ConnectionError
 from io import BytesIO
+
+
+model_path = "known_faces"
+
+
+def get_known_faces():
+    known_faces = dict()
+
+    if os.path.exists(model_path):
+        try:
+            with open(model_path, "rb") as f:
+                known_faces = pickle.load(f)
+        except IOError as e:
+            print(e)
+
+    return known_faces
+
+
+def save_dict(updated_known_faces):
+    try:
+        with open(model_path, "wb") as f:
+            pickle.dump(updated_known_faces, f, protocol=pickle.HIGHEST_PROTOCOL)
+    except IOError as e:
+        print(e)
+
 
 app = Flask(__name__)
 known_faces = get_known_faces()
@@ -84,18 +111,12 @@ def predict():
 
 
 def get_photo_and_name(get_name=False):
-    photo = None
-    name = None
     try:
         if get_name:
-            name = request.form["name"]
-        photo = request.files["photo"]
-    except ConnectionError as ece:
-        print("Connection Error:", ece)
-    except Timeout as et:
-        print("Timeout Error:", et)
-    except RequestException as e:
-        print("Some Ambiguous Exception:", e)
+            name = request.form.get("name")
+        photo = request.files.get("photo")
+    except (ConnectionError,Timeout,RequestException)  as err:
+        return err 
 
     return photo, name
 
@@ -113,5 +134,4 @@ def get_face_encoding(photo):
 
 
 if __name__ == "__main__":
-    # for local dev
     app.run(host="0.0.0.0", port=5000)
